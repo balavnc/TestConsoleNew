@@ -1,0 +1,25 @@
+{% extends "appium/element_list.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} OS & Versions {% endblock %}
+{% block delete_url %} {% url 'appium_os_delete' %} {% endblock %}
+
+{% block form_elem %} 
+    <tr>
+        <th>Select</th>
+        <th>OS Type</th>
+        <th>OS Version</th>
+    </tr>
+    {% for os_version in appium_os_versions %}
+        <tr>
+            <td>
+                <input type='checkbox' name='os_version' value='{{ os_version.id }}' data-edit= '{% url "appium_os_edit" os_version.id %}'id="{{ os_version.os_version }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+            </td>
+            <td> {{ os_version.os_type }} </td>
+            <td> {{ os_version.os_version }} </td>
+        </tr>
+    {% endfor %}  
+{% endblock %}
+
+{% block add_url %} {% url 'appium_os_new' %} {% endblock %}

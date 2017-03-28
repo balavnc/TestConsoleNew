@@ -1,0 +1,203 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block head %}
+
+    <script src="{% static 'revo/scripts/revo.js' %}"></script>
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
+	<link href="{% static 'revo/css/animate.css' %}" rel="stylesheet"/>
+	
+{% endblock %}
+
+{% block body %} 
+    
+        <form id="" action="" method="post">
+		<div class="row">
+            {% csrf_token %}
+			
+			<div class="col-md-12">
+				<div class="col-md-3">
+					<div class="os-box">
+						<div class="tabs-left">
+						   <p class="quotation-mark">
+								Operating System
+								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}" alt="suite"></span>
+							</p>
+							<hr>
+							<div class="panel-group" id="accordion11">
+							  <div class="panel">
+								<label>
+									<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion11" href="#accordion1_1">Android</a>
+								</label>
+								<div id="accordion1_1" class="panel-collapse collapse">
+								  <div class="panel-body">
+									<p>
+										<div  class="select_style animated fadeIn">
+										<select id="type" class="form-control" href="#android">
+											<option value="">Select Version</option>
+											<option value="Version1" href="#accordion1_3" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												Android Version1 
+											</option>
+											<option value="Version2" href="#accordion1_4" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												Android Version2 
+											</option>
+											<option value="Version3" href="#accordion1_5" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												Android Version3 
+											</option>
+										</select>
+										</div>
+									</p>									
+								  </div>
+								</div>
+							  </div>
+							  <div class="panel">
+								<label>
+									<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion11" href="#accordion1_2">IOS</a>
+								</label>
+								<div id="accordion1_2" class="panel-collapse collapse">
+								  <div class="panel-body">
+									<p>
+										<div  class="select_style animated fadeIn">
+										<select id="type2" class="form-control" href="#ios">
+											<option value="">Select Version</option>
+											<option value="IOSVersion1" href="#accordion1_3" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												IOSVersion1
+											</option>
+											<option value="IOSVersion2" href="#accordion1_4" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												IOSVersion2
+											</option>
+											<option value="IOSVersion3" href="#accordion1_5" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion21">
+												IOSVersion3
+											</option>
+										</select>
+										</div>
+									</p>
+								  </div>
+								</div>
+							  </div> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+					$(document).ready(function () {
+						$("#type").change(function () {
+							var val = $(this).val();
+							$("#ios").removeClass('in');
+							$("#android").addClass('in');
+							//$("#ios").removeClass('in');
+							if (val == "") {
+								$("#android").removeClass('in');
+								
+							}
+							if (val == "Version1") {
+								$("#android").html("<div id='accordion1_3' class='panel-collapse collapse'><option value=''>Select Android Device1</option><option value='Device1'>Android Device1</option><option value='Device2'>Android Device2</option></div>");
+								
+							} else if (val == "Version2") {
+								$("#android").html("<div id='accordion1_4' class='panel-collapse collapse'><option value=''>Select Android Device2</option><option value='Device3'>Android Device3</option><option value='Device4'>Android Device4</option></div>");
+							} else if (val == "Version3") {
+								$("#android").html("<div id='accordion1_5' class='panel-collapse collapse'><option value=''>Select Android Device3</option><option value='Device5'>Android Device5</option><option value='Device6'>Android Device6</option></div>");
+							}
+						});
+								
+						$("#type2").change(function () {
+							var val = $(this).val();
+							$("#android").removeClass('in');
+							$("#ios").addClass('in');
+							if (val == "") {
+								$("#ios").removeClass('in');
+								
+							}
+							if (val == "IOSVersion1") {
+								$("#ios").html("<div id='accordion1_6' class='panel-collapse collapse'><option value=''>Select IOS Device1</option><option value='Device1'>IOS Device1</option><option value='Device2'>IOS Device2</option></div>");
+								
+							} else if (val == "IOSVersion2") {
+								$("#ios").html("<div id='accordion1_7' class='panel-collapse collapse'><option value=''>Select IOS Device2</option><option value='Device3'>IOS Device3</option><option value='Device4'>IOS Device4</option></div>");
+							} else if (val == "IOSVersion3") {
+								$("#ios").html("<div id='accordion1_8' class='panel-collapse collapse'><option value=''>Select IOS Device3</option><option value='Device5'>IOS Device5</option><option value='Device6'>IOS Device6</option></div>");
+							}
+						});
+					});
+				</script>
+				<div class="col-md-3">
+					<div class="quote-box">
+						<p class="quotation-mark">
+							Device
+							<span class="pull-right"><img src="{% static 'app/images/test.png' %}" alt="case"></span>
+						</p>
+						<hr>
+						<div id="accordion21">
+							<div  class="select_style">
+							<select id="android" class="form-control panel-collapse collapse animated fadeIn">
+								
+							</select>
+							</div>
+							<div  class="select_style">
+							<select id="ios" class="form-control panel-collapse collapse animated fadeIn">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="quote-box">
+						<div class="tabs-left">
+						   <p class="quotation-mark">
+								TEST SUITE
+								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}" alt="suite"></span>
+							</p>
+							<hr>
+							<div class="suite-text scroller main_menu" id="testsuite" name="suites">
+							<ul class="nav nav-tabs"></ul>
+								
+							</div>
+						</div><!-- /tabbable -->
+					</div>
+				</div>
+			
+				<div class="col-md-3">
+					<div class="quote-box">
+						<p class="quotation-mark">
+							TEST CASE
+							<span class="pull-right"><img src="{% static 'app/images/test.png' %}" alt="case"></span>
+						</p>
+						<hr>
+						<div id="myTabContent" class="bar-content">
+							<div id="testcase" name="cases"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4">
+					
+				</div>
+				<div class="col-md-3">
+					<div class="quote-box runquote run_button">
+							<input type="image" name="submit" img="" src="/static/app/images/run.png" alt="Run">
+					</div>
+				</div>
+				<div class="col-md-4">
+					
+				</div>
+			</div>
+		</div>
+	</form>
+
+	
+	
+	<script>
+	
+        var config = {};
+        
+        config.testSuiteWithCases = "{% url 'test_suite_with_cases' %}";
+        window.config = config;
+        
+	</script>
+	
+	{% include "revo/console_modal.html" %}
+{% endblock %}

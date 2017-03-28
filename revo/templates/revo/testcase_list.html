@@ -1,0 +1,25 @@
+{% extends "revo/element_list.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} Test Cases {% endblock %}
+{% block delete_url %} {% url 'test_case_delete' %} {% endblock %}
+
+{% block form_elem %} 
+    <tr>
+        <th>Select</th>
+        <th>Test Case Name</th>
+        <th>Mapping Name</th>
+    </tr>
+    {% for test_case in test_cases %}
+        <tr>
+            <td>
+                <input type='checkbox' name='test_case' value='{{ test_case.id }}' data-edit= '{% url "test_case_edit" test_case.id %}'id="{{ test_case.name }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+            </td>
+            <td> {{ test_case.name }} </td>
+            <td> {{ test_case.mapping_name }} </td>
+        </tr>
+    {% endfor %}  
+{% endblock %}
+
+{% block add_url %} {% url 'test_case_new' %} {% endblock %}

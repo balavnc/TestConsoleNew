@@ -1,0 +1,60 @@
+{% extends "appium/element_form.html" %}
+{% load staticfiles%}
+
+{% load widget_tweaks %}
+{% block form_title %} {% if object %} Edit Test Suite {% else %} Add Test Suite {% endif %} {% endblock %}
+
+
+{% block head %} 
+    
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block form_elem %}
+    <p>
+        {{ form.device_type.errors }}
+        <label for="{{form.device_type.id_for_label}}" >Device Type</label>
+        {{ form.device_type | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.test_suite_name.errors }}
+        <label for="{{form.test_suite_name.id_for_label}}" >Test Suite Name</label>
+        {{ form.test_suite_name | add_class:"form-control input-sm" }}
+    </p>
+	<p class="hidden">
+        {{ form.test_cases_list.errors }}
+        {{ form.test_cases_list | attr:"id:lstBoxMain"}}
+    </p>
+	
+      
+    <p>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="subject-info-box-1">
+                <label for="{{form.test_cases_list.id_for_label}}" >Test Cases List</label>
+                    <div class="case-text scroller main_menu" id="testcases" name="test_case">
+                    <select multiple='multiple' id='lstBox1' class='form-control'></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p>&nbsp;</p>
+            <div class="subject-info-arrows text-center">
+              <input type='button' id='btnAllRight' value='>>' class=" btn-default btn-All" /><br />
+              <input type='button' id='btnRight' value='>' class="btn-default btn-All" /><br />
+              <input type='button' id='btnLeft' value='<' class="btn-default btn-All" /><br />
+              <input type='button' id='btnAllLeft' value='<<' class="btn-default btn-All" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="subject-info-box-2">
+                <label for="{{form.test_cases_list.id_for_label}}" >Test Cases List</label>
+                <select multiple="multiple" id='lstBox2' class="form-control">
+                </select>
+            </div>
+        </div>
+    </div> 
+
+    </p>
+			<script src="{% static 'appium/scripts/appium.js' %}"></script>
+{% endblock %}

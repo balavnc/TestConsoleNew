@@ -1,0 +1,27 @@
+{% extends "appium/element_list.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} Test Cases {% endblock %}
+{% block delete_url %} {% url 'appium_test_case_delete' %} {% endblock %}
+
+{% block form_elem %} 
+    <tr>
+        <th>Select</th>
+        <th>Device Type</th>
+        <th>Test Case ID</th>
+        <th>Description</th>
+    </tr>
+    {% for test_case in appium_test_cases %}
+        <tr>
+            <td>
+                <input type='checkbox' name='test_case' value='{{ test_case.id }}' data-edit= '{% url "appium_test_case_edit" test_case.id %}'id="{{ test_case.test_case_id }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+            </td>
+	        <td> {{ test_case.device_type }} </td>
+            <td> {{ test_case.test_case_id }} </td>
+            <td> {{ test_case.description }} </td>
+        </tr>
+    {% endfor %}  
+{% endblock %}
+
+{% block add_url %} {% url 'appium_test_case_new' %} {% endblock %}

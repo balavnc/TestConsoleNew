@@ -1,0 +1,59 @@
+{% extends "revo/element_form.html" %}
+{% load staticfiles%}
+
+{% load widget_tweaks %}
+{% block form_title %}
+    {% if object %}
+        Edit Test Suite 
+    {% else %}
+        Add Test Suite
+    {% endif %}
+{% endblock %}
+
+{% block head %} 
+    
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block form_elem %}
+    
+    <p>
+        {{ form.name.errors }}
+        <label for="{{form.name.id_for_label}}" >Name</label>
+        {{ form.name | add_class:"form-control input-sm" }}
+    </p>
+    <p class="hidden">
+        {{ form.cases.errors }}
+        {{ form.cases | attr:"id:lstBoxMain"}}
+    </p>
+    <p>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="subject-info-box-1">
+                <label for="{{form.name.id_for_label}}" >Test Cases</label>
+                    <div class="case-text scroller main_menu" id="testcases" name="test_case">
+                    <select multiple='multiple' id='lstBox1' class='form-control'></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p>&nbsp;</p>
+            <div class="subject-info-arrows text-center">
+              <input type='button' id='btnAllRight' value='>>' class=" btn-default btn-All" /><br />
+              <input type='button' id='btnRight' value='>' class="btn-default btn-All" /><br />
+              <input type='button' id='btnLeft' value='<' class="btn-default btn-All" /><br />
+              <input type='button' id='btnAllLeft' value='<<' class="btn-default btn-All" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="subject-info-box-2">
+                <label for="{{form.name.id_for_label}}" >Test Cases</label>
+                <select multiple="multiple" id='lstBox2' class="form-control">
+                </select>
+            </div>
+        </div>
+    </div> 
+
+    </p>
+			<script src="{% static 'revo/scripts/revo.js' %}"></script>
+{% endblock %}

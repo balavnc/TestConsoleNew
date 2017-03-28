@@ -1,0 +1,15 @@
+.graph-container {
+  width: 450px;
+  height: 400px;
+  margin: 20px; 
+}
+ .subdiv{
+    background:rgba(229,229,229,0.6);
+    border-radius: 7px; 
+    border: 1px solid #adadad 
+  }
+  .select_style select {
+    
+    background:#FAE5E6;
+    
+}

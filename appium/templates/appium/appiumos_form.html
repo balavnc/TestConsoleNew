@@ -1,0 +1,18 @@
+{% extends "appium/element_form.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} {% if object %} Edit OS & Version {% else %} Add OS & Version {% endif %} {% endblock %}
+
+{% block form_elem %}
+    <p>
+        {{ form.os_type.errors }}
+        <label for="{{form.os_type.id_for_label}}" >OS Type</label>
+        {{ form.os_type | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.os_version.errors }}
+        <label for="{{form.os_version.id_for_label}}" >OS Version</label>
+        {{ form.os_version | add_class:"form-control input-sm" }}
+    </p>
+{% endblock %}

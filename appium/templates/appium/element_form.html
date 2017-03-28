@@ -1,0 +1,41 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block body %}
+    <script>
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.appiumAndroidTestSuiteWithCases = "{% url 'appium_android_test_suite_with_cases' %}";
+        window.config = config;
+    </script>
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title">{% block form_title %} {% endblock %}</h3>
+        </div>
+        <div class="panel-body device-form">
+            <form method="post" >
+                {% csrf_token %}
+                <div class="col-md-12 col-sm-12" >
+                    {% block form_elem %} 
+                        <p>
+                            {{ form.name.errors }}
+                            <label for="{{form.name.id_for_label}}" >Test Case Name</label>
+                            {{ form.name | add_class:"form-control input-sm" }}
+                        </p>
+                    {% endblock %}
+                    <p>
+                        <div>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
+                        </div>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

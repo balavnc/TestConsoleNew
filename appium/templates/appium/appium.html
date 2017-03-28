@@ -1,0 +1,211 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block head %}
+
+    <script src="{% static 'appium/scripts/appium.js' %}"></script>
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
+	<link href="{% static 'revo/css/animate.css' %}" rel="stylesheet"/>
+	
+	<script src="{% static 'revo/scripts/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.fixedHeader.min.js' %}"></script>
+	
+	<link rel="stylesheet" href="{% static 'revo/css/jquery.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/responsive.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/fixedHeader.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/bootstrap-datetimepicker.css' %}"/>
+	<script src="{% static 'revo/scripts/moment-with-locales.js' %}"></script>
+	<script src="{% static 'revo/scripts/bootstrap-datetimepicker.js' %}"></script>
+	
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
+    <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
+    <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
+    
+    <script src="{% static 'revo/scripts/job_status.jsx' %}" type="text/jsx"></script>
+	
+	
+{% endblock %}
+
+{% block body %} 
+    
+        <form id="" action="" method="post">
+		<div class="row">
+            {% csrf_token %}
+			<div class="col-md-12">
+				<div class="panel-group" id="accordion1">
+		<div class="row">
+		<div class="col-md-6"  style="border-right:1px solid #ddd">
+	  <div class="panel panel-default" onload="load()">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+           <a href="#">ANDROID</a>
+          </h5>
+        </div>
+        <div id="accordion1_1" class="panel-collapse collapse in">
+          <div style="border:1px solid #ddd">
+            <div class="col-md-12">
+					<div class="os-box">
+						<div class="tabs-left">
+								<table style="width:100%">
+									<thead style="float:right">
+										<tr style='border-bottom:1px solid #CCC;'>
+											<th class="table-header job-status_heading" style="width:100px">Devices &nbsp; &nbsp;<a><i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" id="button"></i></a></th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Status  </th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Version  </th>
+											<th class="table-header job-status_heading" style="width:100px">Serial No</th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Environment</th>
+										</tr>
+									</thead>
+									<tbody class="panel-collapse collapse in animated fadeIn appium_tbody" id="android_result"/>
+								</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<div class="quote-box">
+						<div class="tabs-left">
+						   <p class="quotation-mark">
+								TEST SUITE
+								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}" alt="suite"></span>
+							</p>
+							<hr>
+							<div class="suite-text scroller main_menu" id="testsuite-android" name="suites">
+							<ul class="nav nav-tabs"></ul>
+								
+							</div>
+						</div><!-- /tabbable -->
+					</div>
+				</div>
+			
+				<div class="col-md-6">
+					<div class="quote-box">
+						<p class="quotation-mark">
+							TEST CASE
+							<span class="pull-right"><img src="{% static 'app/images/test.png' %}" alt="case"></span>
+						</p>
+						<hr>
+						<div id="myTabContent" class="bar-content">
+							<div id="testcase-android" name="cases"></div>
+						</div>
+					</div>
+				</div>
+          </div>
+        </div>
+      </div>
+	  </div>
+	  <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+            <a href="#">IOS</a>
+          </h5>
+        </div>
+        <div id="accordion1_2" class="panel-collapse in collapse">
+          <div>
+            <div class="col-md-12">
+					<div class="os-box">
+						<div class="tabs-left">
+						   
+								<table style="width:100%">
+									<thead style="float:right">
+										<tr style='border-bottom:1px solid #CCC;'>
+											<th class="table-header job-status_heading" style="width:100px">Devices &nbsp; &nbsp;<a><i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" id="button2"></i></a></th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Status  </th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Version  </th>
+											<th class="table-header job-status_heading" style="width:100px">Serial No</th>
+											<th class="table-header job-status_heading" style="padding:5px; width:100px">Environment</th>
+										</tr>
+									</thead>
+									<tbody class="panel-collapse collapse in animated fadeIn appium_tbody" id="ios_result"/>
+								</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="quote-box">
+						<div class="tabs-left">
+						   <p class="quotation-mark">
+								TEST SUITE
+								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}" alt="suite"></span>
+							</p>
+							<hr>
+							<div class="suite-text scroller main_menu" id="testsuite-ios" name="suites">
+							<ul class="nav nav-tabs"></ul>
+								
+							</div>
+						</div><!-- /tabbable -->
+					</div>
+				</div>
+			
+				<div class="col-md-6">
+					<div class="quote-box">
+						<p class="quotation-mark">
+							TEST CASE
+							<span class="pull-right"><img src="{% static 'app/images/test.png' %}" alt="case"></span>
+						</p>
+						<hr>
+						<div id="myTabContent" class="bar-content">
+							<div id="testcase-ios" name="cases"></div>
+						</div>
+					</div>
+				</div>
+          </div>
+        </div>
+      </div>
+	  </div>
+	  </div>
+  </div>
+				
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4 divsub"></div>
+				<div class="col-md-4 text-center">
+					<div class="">
+							<input type="image" name="submit" img="" src="{% static 'app/images/run.png' %}" alt="Run">
+					</div>
+				</div>
+				<div class="col-md-4 divsub"></div>
+			</div>
+		
+	</form>
+	<form action="{% url 'StopMultipleJobs' %}" method="post">
+        {% csrf_token %}  
+            <div class="col-md-12 divsub">
+                <div class="quote-box scroller-text scroller" id="job-status-table"></div>
+            </div>
+        
+			<div class="col-md-12">
+				<div class="col-md-4 divsub"></div>
+				<div class="col-md-4 text-center">
+                    <input type="image" name="submit" img src="{% static 'app/images/Stop.png' %}" alt="Stop">
+                </div>
+				<div class="col-md-4 divsub"></div>
+			</div>
+		
+    </form>
+	</div>
+	
+	<script>
+	
+        var config = {};
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.appiumAndroidTestSuiteWithCases = "{% url 'appium_android_test_suite_with_cases' %}";
+		config.appiumIOSTestSuiteWithCases = "{% url 'appium_ios_test_suite_with_cases' %}";
+		config.appiumAndroidDeviceList = "{% url 'appium_android_devices_list' %}"; 
+		config.appiumIOSDeviceList = "{% url 'appium_ios_devices_list' %}";
+        window.config = config;
+        
+	</script>
+	
+	{% include "appium/console_modal.html" %}
+{% endblock %}

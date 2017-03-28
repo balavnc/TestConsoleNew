@@ -1,0 +1,248 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+{% block head %}
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>     
+	<script src="{% static 'revo/scripts/revo.js' %}"></script>
+{% endblock %}
+{% block body %} 
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+		.editable
+        {
+            padding: 2px;
+        }
+        .editable:hover
+        {
+            cursor: pointer;
+            background-color: #D9EDF8;
+        }
+    </style>
+    
+	<div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title"> Test Suites <i class="fa fa-plus" title="Add Test Suites" style="cursor:pointer; float: right" aria-hidden="true" data-toggle="modal" data-target="#addModal"></i></h3>
+        </div>
+        <div class="panel-body">
+            <form name="tform" action="{% url 'test_suite_delete' %}" method="post">
+				<script>
+					$(function(){
+						$("table tr").click(function(){
+							alert (this.rowIndex);
+						});
+					});
+				</script>
+                {% csrf_token %}
+                <table id="mytable">
+                    <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Mapping</th>
+						
+                    </tr>
+					
+                    {% for test in suite %}
+                        <tr>
+                            <td><input type='checkbox' name='tset_suite_name[]' value= "{{ test.name }}" id="tset_suite" onchange="disable_edit()"/> </td>
+                            <td class="editable">{{ test.name }}</td>
+                            <td class="editable">{{ test.mapping }}</td>
+							
+							
+							
+                        </tr>
+                    {% endfor %} 
+
+											
+                </table>
+				
+				
+                
+                <p>
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-2">
+							<div>
+								<button type="button" name="Edit_Button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editModal">Edit</button>
+							</div>
+							</div>
+							<div class="col-md-2">
+							<div>
+								<input type='submit' class="btn btn-primary center-block" value="Delete"  name="submit"/>
+							</div>
+							</div>
+							<div class="col-md-2">
+							<div>
+								<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#addModal">Add</button>
+							</div>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+					</div>
+                </p>
+				
+				
+            </form>
+        </div>
+    </div>
+	<!-- Add Test Suites Modal ----->
+	<div id="addModal" class="modal fade" role="dialog">
+		
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			
+				
+				<h3 class="device-title">Add Test Suites</h3>
+			
+			<div class="panel-body">
+				<form action="{% url 'test_suite_new' %}" method="post">
+					{% csrf_token %}
+					<div class="col-md-12 col-sm-12">
+						<div class="field_group">
+							
+								<!--<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">-->
+								<div class="form-group input-group">
+									<label for="test_suites-name">Test Suite Name</label>
+									<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">
+								</div>
+							<div class="form-group input-group">
+								<!--<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">-->
+								<label for="test_case-name">Test Case Name</label>
+								<div class="quote-text scroller">
+									<div class="center-block">
+										<div class="selectBox" class="selection">
+											<div class="overSelect"></div>
+										</div>
+										<div>
+											<nav>
+												<select id="test_suite" multiple="multiple" class="selectpicker">
+													<option value="" disabled>
+														<label for="select">
+															Select Test Cases
+														</label>
+													</option>
+													<option value="1">
+														<label for="one" class="">
+															Test Case 1
+														</label>
+													</option>
+													<option value="2">
+														<label for="two" >
+															Test Case 2
+														</label>
+													</option>
+													<option value="3">
+														<label for="three">
+															Test Case 3
+														</label>
+													</option>
+													<option value="4">
+														<label for="four" >
+															Test Case 4
+														</label>
+													</option>
+													<option value="5">
+														<label for="five" >
+															Test Case 5
+														</label>
+													</option>
+													<option value="6">
+														<label for="six" >
+															Test Case 6
+														</label>
+													</option>
+												</select>
+																						
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+						</div>
+						<!--<div>
+							<input type='button' class="btn btn-success" value="+" id="add"/>
+						</div>-->
+						<p>
+							<div>
+								<input type='submit' class="btn btn-primary center-block" value="Submit" name="submit"/>
+							</div>
+						</p>
+					</div>
+				</form>
+			</div>	 
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- Edit Test Suites Modal ----->
+	<div id="editModal" class="modal fade" role="dialog">
+		
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			
+				
+				<h3 class="device-title">Edit Test Suites</h3>
+			
+			<div class="panel-body">
+    		<form action="{% url 'test_suite_new' %}" method="post">
+                {% csrf_token %}
+    			<div class="col-md-12 col-sm-12">
+    				<div class="field_group">
+    					<div class="form-group input-group">
+							<div class="form-group input-group">
+								<label for="test_suites-name">Test Suite Name</label>
+								
+								<input type="text" name="test_suite" class="form-control input-sm test_suites" value="">
+								
+							</div>							
+							<div class="form-group input-group">
+								<label for="test_case-name">Test Case Name</label>
+								<input type="text" name="test_case" class="form-control input-sm test_suites" value="">
+							</div>
+    					</div>
+    					
+    				</div>
+    				<!--<div>
+    					<input type='button' class="btn btn-success" value="+" id="add"/>
+    				</div>-->
+    				<p>
+    					<div>
+    						<input type='submit' class="btn btn-primary center-block" value="Submit" name="submit"/>
+    					</div>
+    				</p>
+    			</div>
+    		</form>
+	    </div>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	
+{% endblock %}

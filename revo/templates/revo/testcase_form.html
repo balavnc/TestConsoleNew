@@ -1,0 +1,18 @@
+{% extends "revo/element_form.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} Add Test Case {% endblock %}
+
+{% block form_elem %}
+    <p>
+        {{ form.name.errors }}
+        <label for="{{form.name.id_for_label}}" >Test Case Name</label>
+        {{ form.name | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.mapping_name.errors }}
+        <label for="{{form.mapping_name.id_for_label}}" >Mapping Name</label>
+        {{ form.mapping_name | add_class:"form-control input-sm" }}
+    </p>
+{% endblock %}

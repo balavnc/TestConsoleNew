@@ -1,0 +1,34 @@
+{
+	"Android": [{
+		"id": 0,
+		"name": "Android Version1"
+	}, {
+		"id": 1,
+		"name": "Android Version 2"
+	}, {
+		"id": 2,
+		"name": "Android Version 3"
+	}, {
+		"id": 3,
+		"name": "Android Version 4"
+	}, {
+		"id": 4,
+		"name": "Android Version 5"
+	}
+	, {
+		"id": 5,
+		"name": "Android Version 6"
+	}],
+	"IOS": [{
+		"id": 7,
+		"name": "IOS Version 1"
+	}, {
+		"id": 8,
+		"name": "IOS Version 2"
+	}, {
+		"id": 9,
+		"name": "IOS Version 3"
+	}]
+
+
+}

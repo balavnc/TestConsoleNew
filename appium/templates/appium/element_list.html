@@ -1,0 +1,88 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+{% block head %}
+    <script src="{% static 'appium/scripts/appium.js' %}"></script>
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>  
+    <script>
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.appiumAndroidTestSuiteWithCases = "{% url 'appium_android_test_suite_with_cases' %}";
+        window.config = config;
+    </script>   
+{% endblock %}
+{% block body %} 
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title"> {% block form_title %} {% endblock %}</h3>
+        </div>
+        <div class="panel-body device-form">
+            <form name="tform" action="{% block delete_url %} {% endblock %}" method="post">
+                {% csrf_token %}
+                <table class="list_table">
+                    {% block form_elem %} 
+                        <tr>
+                            <th>Select</th>
+                            <th>Test Case Name</th>
+                        </tr>
+                        {% for test_case in appium_test_cases %}
+                            <tr>
+                                <td>
+                                    <input type='checkbox' name='test_case' value='{{ test_case.id }}' data-edit= '{% url "appium_test_case_edit" test_case.id %}'id="{{ test_case.test_case_id }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+                                </td>
+                                <td> {{ test_case.test_case_id }} </td>
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
+                </table>                
+                <p>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                            <div>
+                                <button type="button" name="Edit_Button" class="btn btn-primary center-block" disabled="true" onclick="editTestCase()">Edit</button>
+                            </div>
+                            </div>
+                            <div class="col-md-2">
+                            <div>
+                                <input type='submit' class="btn btn-primary center-block"  value="Delete" name="submit" />
+                            </div>
+                            </div>
+                            <div class="col-md-2">
+                            <div>
+                                <a href= "{% block add_url %} {% url 'appium_test_case_new' %} {% endblock %}">
+                                    <button type="button" class="btn btn-primary center-block">Add</button>
+                                </a>
+                            </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

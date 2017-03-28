@@ -1,0 +1,44 @@
+{% extends "appium/element_form.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} {% if object %} Edit Device {% else %} Add Device {% endif %} {% endblock %}
+
+{% block form_elem %}
+    <p>
+        {{ form.device_name.errors }}
+        <label for="{{form.device_name.id_for_label}}" >Device Name</label>
+        {{ form.device_name | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.device_model.errors }}
+        <label for="{{form.device_model.id_for_label}}">Device Model</label>
+        {{ form.device_model | add_class:"form-control input-sm" }}
+    </p>
+  	<p>
+        {{ form.device_mac.errors }}
+        <label for="{{form.device_mac.id_for_label}}">Device MAC</label>
+        {{ form.device_mac | add_class:"form-control input-sm" }}
+    </p>
+	<p>
+        {{ form.device_serial.errors }}
+        <label for="{{form.device_serial.id_for_label}}">Device Serial</label>
+        {{ form.device_serial | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.device_type.errors }}
+        <label for="{{form.device_type.id_for_label}}">OS Type</label>
+        {{ form.device_type | add_class:"form-control input-sm" }}
+    </p>
+	<p>
+        {{ form.device_version.errors }}
+        <label for="{{form.device_version.id_for_label}}">OS Version</label>
+        {{ form.device_version | add_class:"form-control input-sm" }}
+    </p>
+	<p>
+        {{ form.device_env.errors }}
+        <label for="{{form.device_env.id_for_label}}">Environment Type</label>
+        {{ form.device_env | add_class:"form-control input-sm" }}
+    </p>
+    
+{% endblock %}

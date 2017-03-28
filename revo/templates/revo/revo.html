@@ -1,0 +1,166 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block head %}
+
+    <script src="{% static 'revo/scripts/revo.js' %}"></script>
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
+	
+    <script src="{% static 'revo/scripts/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.fixedHeader.min.js' %}"></script>
+	
+	<link rel="stylesheet" href="{% static 'revo/css/jquery.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/responsive.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/fixedHeader.dataTables.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'revo/css/bootstrap-datetimepicker.css' %}"/>
+	<script src="{% static 'revo/scripts/moment-with-locales.js' %}"></script>
+	<script src="{% static 'revo/scripts/bootstrap-datetimepicker.js' %}"></script>
+	
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
+    <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
+    <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
+    <script src="{% static 'revo/scripts/revo.jsx' %}" type="text/jsx"></script>
+    <script src="{% static 'revo/scripts/job_status.jsx' %}" type="text/jsx"></script>
+{% endblock %}
+
+{% block body %} 
+    
+        <form id="run-job" action="{% url 'revo_run' %}" method="post">
+		<div class="row">
+            {% csrf_token %}
+
+			<div class="col-md-12">
+				<div class="col-md-5">
+					<div class="quote-box" id="stb-table" name="stb-table">
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="quote-box">
+						<div class="tabs-left">
+						   <p class="quotation-mark">
+								TEST SUITE
+								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}" alt="suite"></span>
+							</p>
+							<hr>
+							<div class="suite-text scroller main_menu" id="testsuite" name="suites">
+							<ul class="nav nav-tabs"></ul>
+								
+							</div>
+						</div><!-- /tabbable -->
+					</div>
+				</div>
+			
+				<div class="col-md-3">
+					<div class="quote-box">
+						<p class="quotation-mark">
+							TEST CASE
+							<span class="pull-right"><img src="{% static 'app/images/test.png' %}" alt="case"></span>
+						</p>
+						<hr>
+						<div id="myTabContent" class="bar-content">
+							<div id="testcase1" name="cases"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-8">
+					<div class="schedule_txt">
+						<input type="checkbox" name="schedule" id="enable_schedule" onclick="showMe('div1')" value="true"> Enable Test Scheduling
+					</div>
+					<div class="hideme" id="div1">
+						<div class="quote-box runquote">						
+							<div class="input-group form-control date_time">		
+								<input type="text" name="time" id="datetimepicker1" >
+							</div>		
+            			</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="quote-box runquote run_button">
+							<input type="image" name="submit" img="" src="/static/app/images/run.png" alt="Run">
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+	<form action="{% url 'StopMultipleJobs' %}" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-12 divsub">
+                <div class="quote-box scroller-text scroller" id="job-status-table"></div>
+            </div>
+        </div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4 divsub"></div>
+				<div class="col-md-4 text-center">
+                    <input type="image" name="submit" img src="{% static 'app/images/Stop.png' %}" alt="Stop">
+                </div>
+				<div class="col-md-4 divsub"></div>
+			</div>
+		</div>
+    </form>
+	<script>
+	
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+		config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.testSuiteWithCases = "{% url 'test_suite_with_cases' %}";
+        window.config = config;
+
+        function datetimepickerInit() {
+            $('#datetimepicker1').datetimepicker({
+                minDate: moment()
+            });
+        }
+        $(function() {
+            datetimepickerInit();
+        });
+        //window.runRevoJson = {}
+        //Use this object to fill the state of different widgets. In the end WHEN WE CLICK RUN("/revo/run/“) we have to send this json as parameter.
+        // {
+        //   "scheduled": true,
+        //   "time": "2016-12-29 17:10:50",
+        //   "stbs": [
+        //     "STB 1",
+        //     "stb 2",
+        //     "stb 3"
+        //   ],
+        //   "suites": [
+        //     {
+        //       "name": "Suite Amber",
+        //       "cases": [
+        //         "VOD_EVO_025.py",
+        //         "VOD_EVO_033.py",
+        //         "VOD_EVO_038.py"
+        //       ]
+        //     },
+        //     {
+        //       "name": "Suite Jade",
+        //       "cases": [
+        //         "VOD_EVO_025.py",
+        //         "VOD_EVO_033.py",
+        //         "VOD_EVO_038.py"
+        //       ]
+        //     }
+        //   ]
+        // }
+	</script>
+	
+	{% include "revo/console_modal.html" %}
+{% endblock %}

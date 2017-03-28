@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+	<actions/>
+	<description></description>
+	<keepDependencies>false</keepDependencies>
+	<properties></properties>
+	<scm class='hudson.scm.NullSCM'/>
+	<assignedNode>BLANK</assignedNode>
+	<canRoam>false</canRoam>
+	<disabled>false</disabled>
+	<blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+	<blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+	<triggers>
+		<hudson.triggers.TimerTrigger>
+			<spec>H/15 * * * *</spec>
+		</hudson.triggers.TimerTrigger>
+	</triggers>
+	<concurrentBuild>false</concurrentBuild>
+	<builders>
+		<hudson.tasks.BatchFile>
+			<command>BLANK</command>
+		</hudson.tasks.BatchFile>
+	</builders>
+	<publishers>
+		<com.michelin.cio.hudson.plugins.copytoslave.CopyToMasterNotifier plugin="copy-to-slave@1.4.4">
+			<includes>serialnumbers.txt</includes>
+			<excludes/>
+			<overrideDestinationFolder>false</overrideDestinationFolder>
+			<destinationFolder/>
+			<runAfterResultFinalised>true</runAfterResultFinalised>
+		</com.michelin.cio.hudson.plugins.copytoslave.CopyToMasterNotifier>
+	</publishers>
+	<buildWrappers>
+		<com.michelin.cio.hudson.plugins.copytoslave.CopyToSlaveBuildWrapper plugin="copy-to-slave@1.4.4">
+			<includes>test_stb.py</includes>
+			<excludes/>
+			<flatten>false</flatten>
+			<includeAntExcludes>false</includeAntExcludes>
+			<hudsonHomeRelative>false</hudsonHomeRelative>
+			<relativeTo>userContent</relativeTo>
+		</com.michelin.cio.hudson.plugins.copytoslave.CopyToSlaveBuildWrapper>
+	</buildWrappers>
+</project>
+    

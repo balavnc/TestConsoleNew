@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block head %} 
+    <script>
+        $(document).on( 'click', '.btn-add', function ( event ) {
+            event.preventDefault();
+            var field = $(this).closest( '.field_group' );
+            var field_new = field.clone();
+            $("#removeBtn").attr('style','inline-block');
+            $(this)
+                .toggleClass( 'btn-default' )
+                .toggleClass( 'btn-add' )
+                .toggleClass( 'btn-danger' )
+                .toggleClass( 'btn-remove' )
+                .toggleClass( 'btn-space')
+                //.toggleClass('show')
+                .html( '–' );
+
+            field_new.find( 'input' ).val( '' );
+            field_new.insertBefore( field );    
+        } );
+
+        $( document ).on( 'click', '.btn-remove', function ( event ) {
+            event.preventDefault();
+            $(this).closest( '.field_group' ).remove();
+        });
+
+        $( document ).on( 'click', '#add', function ( event ) {
+            $('.btn-add').click();
+        });
+    </script>
+    <script src="{% static 'app/scripts/jquery.input-ip-address-control-1.0.min.js' %}"></script>
+{% endblock %}
+
+{% block body %} 
+	<div class="panel panel-primary device">
+		<div class="panel-heading device-heading">
+			<h3 class="device-title">Add Test Suites</h3>
+		</div>
+		<div class="panel-body">
+    		<form action="{% url 'test_suite_new' %}" method="post">
+                {% csrf_token %}
+    			<div class="col-md-12 col-sm-12">
+    				<div class="field_group">
+    					<div class="form-group input-group">
+    						<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">
+    					</div>
+    					<div class="form-group input-group">
+    						<input type="text" name="mappings" class="form-control input-sm test_suites" placeholder="Test Suite Mapping Name">
+    						<button id="removeBtn" type="button" class="btn btn-default btn-add"></button>							
+    					</div>
+    				</div>
+    					<div>
+    						<input type='button' class="btn btn-success" value="+" id="add"/>
+    					</div>
+    				<p>
+    					<div>
+    						<input type='submit' class="btn btn-primary center-block" value="Submit" name="submit"/>
+    					</div>
+    				</p>
+    			</div>
+    		</form>
+	    </div>	 
+	</div>
+{% endblock %}
