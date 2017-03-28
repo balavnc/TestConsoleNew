@@ -120,8 +120,29 @@ def appium_ios_devices_list(request):
         
     return HttpResponse(data, content_type='application/json')
 
-
-
+def appium_android_test_cases(request):
+    assert isinstance(request, HttpRequest)
+    resp = []
+    test_cases = AppiumTestCase.objects.filter(device_type__name='Android')
+    
+    for test_case in test_cases:
+        resp.append(test_case.test_case_id)
+    
+    print resp  
+    data = json.dumps(resp)
+    return HttpResponse(data, content_type='application/json')
+    
+def appium_ios_test_cases(request):
+    assert isinstance(request, HttpRequest)
+    resp = []
+    test_cases = AppiumTestCase.objects.filter(device_type__name='IOS')
+    
+    for test_case in test_cases:
+        resp.append(test_case.test_case_id)
+        
+    data = json.dumps(resp)
+    return HttpResponse(data, content_type='application/json')
+    
 
 
 # Appium Device Configuration
