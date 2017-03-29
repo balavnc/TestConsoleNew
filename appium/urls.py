@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.appium_home, name='appium'),
-    url(r'^run', views.run_job, name='appium_run'),
+    url(r'^run', views.appium_run_job, name='appium_run'),
 
     
     # Test Suite and Cases

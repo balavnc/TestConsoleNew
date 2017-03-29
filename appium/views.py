@@ -31,9 +31,25 @@ def appium_home(request):
         })
 )
   
-def run_job(request):
+def appium_run_job(request):
     post_data = json.loads(request.body)
-    print "hello -> ", post_data
+   
+    #parsing data
+    android_devices = post_data['devices_android']
+    ios_devices = post_data['devices_ios']
+    android_suites =  [ suite["name"] for suite in post_data['suites_android']]
+    ios_suites = [ suite["name"] for suite in post_data['suites_ios']]
+    android_suites_cases = []
+    [ android_suites_cases.extend(i) for i in [suite["cases_android"] for suite in post_data['suites_android']]]
+    ios_suites_cases = []
+    [ ios_suites_cases.extend(i) for i in [suite["cases_ios"] for suite in post_data['suites_ios']]]
+    user_name = request.user.username
+    
+    print android_suites_cases
+    print ios_suites_cases
+     
+    
+    return HttpResponse(post_data, content_type='application/json') 
     
     
 # Appium Test Suite Cases as Json

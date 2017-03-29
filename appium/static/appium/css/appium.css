@@ -595,3 +595,5 @@ float: right;}
     border:none;
     outline:none;
 }
+.android-device{padding:5px; width:100px;text-align:center;font-size:12px; word-break: break-all}
+.android-checkbox{margin:0px 5px 0px 5px !important;}

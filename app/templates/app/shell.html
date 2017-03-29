@@ -131,20 +131,20 @@
                 <ul class="list">
                     <li>
                         <a href="{% url 'home' %}">
-                            <i class="fa fa-home font-awesome-icon" aria-hidden="true"></i>
+                            <img src="/static/app/images/home1.png">
                             <span >Home</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'Reports' %}">
-                           <i class="fa fa-file-text font-awesome-icon" aria-hidden="true"></i>
+							<img src="/static/app/images/Reports1.png">
                             <span>Reports</span>
                         </a>
                     </li>            
                     <li>
 						<nav id="primary_nav_wrap">
                             <ul>
-                                <li><a href="{% url 'revo' %}"> <span style="margin-left:35px">Revo</span><span class="accordion-toggle" data-toggle="collapse" data-parent="#revo-menu1" href="#revo-menu">></span></a>
+                                <li><a href="{% url 'revo' %}"><img src="/static/app/images/v-symbol2.png"><span>Revo</span><span class="accordion-toggle" data-toggle="collapse" data-parent="#revo-menu1" href="#revo-menu">></span></a>
 									
 									<div id="revo-menu" style="margin-left:26px; width:160px; box-shadow:1px 1px 1px 1px" class="panel-collapse collapse">
                                         <div class="revo-config"><i class="fa fa-cog font-awesome-icon" aria-hidden="true" style="font-size:18px"></i>&nbsp; &nbsp; Configuration >> </div>
@@ -198,12 +198,24 @@
         </aside>
         <!-- #END# Left Sidebar -->
 		</div>
-	
+		<script>
+			function openNav() {
+				document.getElementById("mySidenav").style.width = "250px";
+				document.getElementById("main").style.marginLeft = "0px";
+			}
+
+			function closeNav() {
+				document.getElementById("mySidenav").style.width = "0";
+				document.getElementById("main").style.marginLeft= "0";
+			}
+		</script>
     </section>
 	<section class="content">
 		<div id="main">
 			<div class="container-fluid">
-				<span style="" id="openNav" onclick="openNav()" class="navopen">&#9776;</span>
+				
+				<a href="javascript:void(0)" class="closebtn" id="openNav" onclick="openNav()" style="text-decoration: none;font-size:25px; color:#ea121b">&rarr;</a>
+				
 				<div class="subdiv">
 					{% block body %} {% endblock %}
 				</div>
