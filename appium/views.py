@@ -19,7 +19,6 @@ from django.views.generic.edit import CreateView, UpdateView
 @login_required
 def appium_home(request):
     assert isinstance(request, HttpRequest)
-    
     return render(
         request,
         "appium/appium.html",
@@ -41,12 +40,14 @@ def appium_run_job(request):
     ios_suites = [ suite["name"] for suite in post_data['suites_ios']]
     android_suites_cases = []
     [ android_suites_cases.extend(i) for i in [suite["cases_android"] for suite in post_data['suites_android']]]
+    android_test_cases = list(set(android_suites_cases))
     ios_suites_cases = []
     [ ios_suites_cases.extend(i) for i in [suite["cases_ios"] for suite in post_data['suites_ios']]]
+    ios_test_cases = list(set(ios_suites_cases))
     user_name = request.user.username
     
-    print android_suites_cases
-    print ios_suites_cases
+    print android_test_cases
+    print ios_test_cases
      
     
     return HttpResponse(post_data, content_type='application/json') 
@@ -77,21 +78,25 @@ def appium_ios_test_suite_cases(request):
     data = json.dumps(resp)            
     return HttpResponse(data, content_type='application/json')
 
+
 # Appium Devices List as Json
-# import win32com.client
+import win32com.client
+import pythoncom
+
 def devices_is_connected():
-#     device_serial_list = [x.device_serial for x in AppiumDevices.objects.all()]
-#     wmi = win32com.client.GetObject("winmgmts:")
-#     
-#     active_devices_list=[]
-#     for device_serial_id in device_serial_list:
-#         for usb in wmi.InstancesOf("Win32_USBHub"):
-#             if str(device_serial_id).upper() in usb.DeviceID.upper():
-#                 active_devices_list.append(device_serial_id)
-    
-    active_devices_list=['1001','1004']
+    device_serial_list = [x.device_serial for x in AppiumDevices.objects.all()]
+    # CoInitialize() to run wmi as a child to avoid com_error
+    pythoncom.CoInitialize()
+    wmi = win32com.client.GetObject("winmgmts:")
+     
+    active_devices_list=[]
+    for device_serial_id in device_serial_list:
+        for usb in wmi.InstancesOf("Win32_USBHub"):
+            if str(device_serial_id).upper() in usb.DeviceID.upper():
+                active_devices_list.append(device_serial_id)
+                
+    pythoncom.CoUninitialize()
     return active_devices_list
-            
 
 def appium_android_devices_list(request):
     assert isinstance(request, HttpRequest)
@@ -101,7 +106,7 @@ def appium_android_devices_list(request):
     devices_list = AppiumDevices.objects.filter(device_type__name='Android')
     for device in devices_list:
         d={}
-        d["DevicesLabel"]=str(device.device_name +'_'+device.device_model)
+        d["DevicesLabel"]=str(device.device_name +' '+device.device_model)
         d["DevicesStatus"]= 1 if str(device.device_serial) in active_devices_list else 0
         d["Version"]=str(device.device_version.os_version)
         d["SerialNo"]=str(device.device_serial)
@@ -115,12 +120,11 @@ def appium_ios_devices_list(request):
     assert isinstance(request, HttpRequest)
     
     active_devices_list= devices_is_connected()
-   
     resp = []
     devices_list = AppiumDevices.objects.filter(device_type__name='IOS')
     for device in devices_list:
         d={}
-        d["DevicesLabel"]=str(device.device_name +'_'+device.device_model)
+        d["DevicesLabel"]=str(device.device_name +' '+device.device_model)
         d["DevicesStatus"]= 1 if str(device.device_serial) in active_devices_list else 0
         d["Version"]=str(device.device_version.os_version)
         d["SerialNo"]=str(device.device_serial)
