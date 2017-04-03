@@ -5,7 +5,7 @@ $(document).ready(function () {
 		for (var i = 0; i < appiumAndroid.length; i++) {
 			if(appiumAndroid[i].DevicesStatus == 0){appiumAndroidclass = "result_offline";disabled = "disabled";}
 			if(appiumAndroid[i].DevicesStatus == 1){appiumAndroidclass = "result_available";disabled = "";}
-			tr = $('<tr style="border-bottom:1px solid #ddd">');
+			tr = $('<tr class="device-table">');
 			tr.append("<td class='android-device'><input type='checkbox' name='devices_android' "+disabled+" class='android-checkbox' value="+ appiumAndroid[i].DevicesLabel +" />"+ appiumAndroid[i].DevicesLabel + "</td>");
 			tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumAndroidclass+"' aria-hidden='false'></i></td>");
 			tr.append("<td class='android-device'>" + appiumAndroid[i].Version + "</td>");
@@ -20,7 +20,7 @@ $(document).ready(function () {
 				for (var i = 0; i < appiumAndroid.length; i++) {
 						if(appiumAndroid[i].DevicesStatus == 0){appiumAndroidclass = "result_offline";}
 						if(appiumAndroid[i].DevicesStatus == 1){appiumAndroidclass = "result_available";}
-						tr = $('<tr style="border-bottom:1px solid #ddd">');
+						tr = $('<tr class="device-table">');
 						tr.append("<td class='android-device'><input type='checkbox' name='devices_android' "+disabled+" class='android-checkbox' value="+ appiumAndroid[i].DevicesLabel +" />"+ appiumAndroid[i].DevicesLabel + "</td>");
 						tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumAndroidclass+"' aria-hidden='false'></i></td>");
 						tr.append("<td class='android-device'>" + appiumAndroid[i].Version + "</td>");
@@ -40,7 +40,7 @@ $(document).ready(function () {
 		for (var i = 0; i < appiumIOS.length; i++) {
 			if(appiumIOS[i].DevicesStatus == 0){appiumIOSclass = "result_offline";disabled = "disabled";}
 			if(appiumIOS[i].DevicesStatus == 1){appiumIOSclass = "result_available";disabled = "";}
-			tr = $('<tr style="border-bottom:1px solid #ddd">');
+			tr = $('<tr class="device-table">');
 			tr.append("<td class='android-device'><input type='checkbox' name='devices_ios' "+disabled+" class='android-checkbox' value="+ appiumIOS[i].DevicesLabel +"  />"+ appiumIOS[i].DevicesLabel + "</td>");
 			tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumIOSclass+"' aria-hidden='false'></i></td>");
 			tr.append("<td class='android-device'>" + appiumIOS[i].Version + "</td>");
@@ -55,7 +55,7 @@ $(document).ready(function () {
 				for (var i = 0; i < appiumIOS.length; i++) {
 						if(appiumIOS[i].DevicesStatus == 0){appiumIOSclass = "result_offline";}
 						if(appiumIOS[i].DevicesStatus == 1){appiumIOSclass = "result_available";}
-						tr = $('<tr style="border-bottom:1px solid #ddd">');
+						tr = $('<tr class="device-table">');
 						tr.append("<td class='android-device'><input type='checkbox' "+disabled+" name='devices_ios' class='android-checkbox' value="+ appiumIOS[i].DevicesLabel +"  />"+ appiumIOS[i].DevicesLabel + "</td>");
 						tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumIOSclass+"' aria-hidden='false'></i></td>");
 						tr.append("<td class='android-device'>" + appiumIOS[i].Version + "</td>");
@@ -390,7 +390,7 @@ function runJobForm() {
 }
 
 function handleTestSuiteCases() {
-	var allOpts = $('#lstBox1 option');
+	var allOpts = $('#lstBoxMain option');
 	$('#lstBox1').append($(allOpts).clone());
 	var selectedOpts = $('#lstBox1 option:selected');
 	$('#lstBox2').append($(selectedOpts).clone());
@@ -404,7 +404,7 @@ function handleTestSuiteCases() {
 		$('#lstBox2').append($(selectedOpts).clone());
 		$(selectedOpts).remove();
 		selectedOpts.each(function(key,opt) {
-			$('#lstBox1 option[value="' + opt.value + '"]').prop('selected', true)
+			$('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', true)
 		});
 		e.preventDefault();
 	});
@@ -417,7 +417,7 @@ function handleTestSuiteCases() {
 		$('#lstBox2').append($(selectedOpts).clone());
 		$(selectedOpts).remove();
 		selectedOpts.each(function(key,opt) {
-			$('#lstBox1 option[value="' + opt.value + '"]').prop('selected', true )
+			$('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', true )
 		});
 		e.preventDefault();
 	});
@@ -430,7 +430,7 @@ function handleTestSuiteCases() {
 		$('#lstBox1').append($(selectedOpts).clone());
 		$(selectedOpts).remove();
 		selectedOpts.each(function(key,opt) {
-			$('#lstBox1 option[value="' + opt.value + '"]').prop('selected', false)
+			$('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', false)
 		});
 		e.preventDefault();
 	});
@@ -443,7 +443,7 @@ function handleTestSuiteCases() {
 		$('#lstBox1').append($(selectedOpts).clone());
 		$(selectedOpts).remove();
 		selectedOpts.each(function(key,opt) {
-			$('#lstBox1 option[value="' + opt.value + '"]').prop('selected', false)
+			$('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', false)
 		});
 		e.preventDefault();
 	});
