@@ -8,7 +8,7 @@
 {% block form_elem %} 
     <tr>
         <th>Select</th>
-        <th>Device Type</th>
+        <th>Test Suite Type</th>
         <th>Test Suite Name</th>
         <th>Total Cases</th>
     </tr>
@@ -17,7 +17,7 @@
             <td>
                 <input type='checkbox' name='suite' value='{{ suite.id }}' id="{{ suite.test_suite_name }}" data-edit= '{% url "appium_test_suite_edit" suite.id %}' onchange="disable_edit_test('Edit_Button', '.list_table tr td')" /> 
             </td>
-	        <td> {{ suite.device_type }} </td>
+	        <td> {{ suite.test_suite_type }} </td>
             <td> {{ suite.test_suite_name }} </td>
             <td> {{ suite.test_cases_list.all.count }} </td>
         </tr>

@@ -17,7 +17,7 @@
             <td>
                 <input type='checkbox' name='test_case' value='{{ test_case.id }}' data-edit= '{% url "appium_test_case_edit" test_case.id %}'id="{{ test_case.test_case_id }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
             </td>
-	        <td> {{ test_case.device_type }} </td>
+	        <td> {{ test_case.test_case_type }} </td>
             <td> {{ test_case.test_case_id }} </td>
             <td> {{ test_case.description }} </td>
         </tr>

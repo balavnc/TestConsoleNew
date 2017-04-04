@@ -58,7 +58,7 @@ def appium_android_test_suite_cases(request):
     assert isinstance(request, HttpRequest)
     
     resp = {}
-    test_suites = AppiumTestSuite.objects.filter(device_type__name='Android')
+    test_suites = AppiumTestSuite.objects.filter(test_suite_type__name='Android')
     for suite in test_suites:
         test_cases_list = [ test_case.test_case_id for test_case in suite.test_cases_list.all() ]
         resp[suite.test_suite_name] = test_cases_list
@@ -70,7 +70,7 @@ def appium_ios_test_suite_cases(request):
     assert isinstance(request, HttpRequest)
     
     resp = {}
-    test_suites = AppiumTestSuite.objects.filter(device_type__name='IOS')
+    test_suites = AppiumTestSuite.objects.filter(test_suite_type__name='IOS')
     for suite in test_suites:
         test_cases_list = [ test_case.test_case_id for test_case in suite.test_cases_list.all() ]
         resp[suite.test_suite_name] = test_cases_list
@@ -143,7 +143,7 @@ def appium_ios_devices_list(request):
 def appium_android_test_cases(request):
     assert isinstance(request, HttpRequest)
     resp = []
-    test_cases = AppiumTestCase.objects.filter(device_type__name='Android')
+    test_cases = AppiumTestCase.objects.filter(test_case_type__name='Android')
     
     for test_case in test_cases:
         resp.append(test_case.test_case_id)
@@ -155,7 +155,7 @@ def appium_android_test_cases(request):
 def appium_ios_test_cases(request):
     assert isinstance(request, HttpRequest)
     resp = []
-    test_cases = AppiumTestCase.objects.filter(device_type__name='IOS')
+    test_cases = AppiumTestCase.objects.filter(test_case_type__name='IOS')
     
     for test_case in test_cases:
         resp.append(test_case.test_case_id)

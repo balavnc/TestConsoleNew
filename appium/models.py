@@ -17,7 +17,7 @@ class EnvironmentType(models.Model):
         return self.name
     
 class AppiumTestCase(models.Model):
-    device_type = models.ForeignKey(DeviceType, null=True)
+    test_case_type = models.ForeignKey(DeviceType, null=True)
     test_case_id = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=1000)
 
@@ -28,11 +28,11 @@ class AppiumTestCase(models.Model):
         return self.test_case_id
     
     class Meta:
-        ordering = ['device_type']
+        ordering = ['test_case_type']
     
 
 class AppiumTestSuite(models.Model):
-    device_type = models.ForeignKey(DeviceType, null=True)
+    test_suite_type = models.ForeignKey(DeviceType, null=True)
     test_suite_name = models.CharField(max_length=255)
     test_cases_list = models.ManyToManyField(AppiumTestCase, related_name="testsuites")
 
@@ -41,9 +41,10 @@ class AppiumTestSuite(models.Model):
 
     def __unicode__(self):
         return self.test_suite_name
-    
+ 
+
 class AppiumOS(models.Model):
-    os_type = models.CharField(max_length=10, choices=(('Android', 'Android'),('IOS', 'IOS')))
+    os_type = models.ForeignKey(DeviceType, null=True)
     os_version = models.CharField(max_length=255, unique=True)
     
     def get_absolute_url(self):
@@ -62,7 +63,7 @@ class AppiumOS(models.Model):
 class AppiumDevices(models.Model):
     device_name = models.CharField(max_length=255, null=True)
     device_model = models.CharField(max_length=255, null=True)
-    device_mac = MACAddressField(integer=False, null=True)
+    device_mac = MACAddressField(integer=False, null=True, blank=True)
     device_serial = models.CharField(max_length=255, unique=True)
     device_type = models.ForeignKey(DeviceType, null=True)
     device_version = models.ForeignKey(AppiumOS, null=True)
