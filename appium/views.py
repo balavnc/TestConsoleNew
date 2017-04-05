@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 import json
 import jenkins
-import os
+import os, time
 
 from models import *
 from django.views.generic import ListView
@@ -51,6 +51,48 @@ def appium_run_job(request):
      
     
     return HttpResponse(post_data, content_type='application/json') 
+ 
+    
+def appium_job_status(request):
+    
+    job_status_list=[]
+    
+    server = jenkins.Jenkins('http://10.146.217.56:9090/job/appium/')
+    info = server.get_info()
+    jobs = info['jobs']
+    
+    for job in jobs:
+            job=job['name']
+            job_info = server.get_job_info(job)
+            JobName= job_info['name']
+            Build= job_info['lastCompletedBuild']['number']
+           
+            build_info = server.get_build_info(job, Build) 
+    
+            Duration = '...'
+            if str(build_info['result']) == 'None':
+                Result = "IN PROGRESS"
+                StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
+                EndTime = '---------'
+    
+            else:
+                Result = build_info['result']
+                StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
+                EndTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
+                Duration= build_info['duration']
+                
+            job_dict={}
+            job_dict['JobName']=JobName
+            job_dict['Build']=Build
+            job_dict['Result']=Result
+            job_dict['StartTime']=StartTime
+            job_dict['EndTime']=EndTime
+            job_dict['Duration']=Duration
+            
+            job_status_list.append(job_dict)
+    
+    data = json.dumps(job_status_list)
+    return HttpResponse(data, content_type='application/json')
     
     
 # Appium Test Suite Cases as Json

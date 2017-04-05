@@ -5,6 +5,9 @@ from . import views
 urlpatterns = [
     url(r'^$', views.appium_home, name='appium'),
     url(r'^run', views.appium_run_job, name='appium_run'),
+    
+    # JobStatus's
+    url(r"^job-status", views.appium_job_status, name="appium_job_status"),
 
     
     # Test Suite and Cases
