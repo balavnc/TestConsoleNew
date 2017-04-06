@@ -13,6 +13,10 @@ from models import *
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
+import socket
+
+hostname = socket.gethostname()
+localhost = socket.gethostbyname(hostname)
 # Create your views here.
 
         
@@ -48,16 +52,33 @@ def appium_run_job(request):
     
     print android_test_cases
     print ios_test_cases
-     
     
+    appium_create_jobs()
+       
     return HttpResponse(post_data, content_type='application/json') 
+
+def appium_create_jobs():
+    
+    server = jenkins.Jenkins('http://'+localhost+':8080')
+
+    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.0.3"><actions/><description/><displayName>appium</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
+
+    new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>Today Date</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>echo '%date%'</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
+    
+    if server.job_exists('appium'):       
+        server.create_job('appium/job2', new_job_config)
+    else:
+        server.create_job('appium', new_folder_config)
+        server.create_job('appium/job2', new_job_config)
+    
+
  
     
 def appium_job_status(request):
     
     job_status_list=[]
     
-    server = jenkins.Jenkins('http://10.146.217.56:9090/job/appium/')
+    server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
     info = server.get_info()
     jobs = info['jobs']
     
