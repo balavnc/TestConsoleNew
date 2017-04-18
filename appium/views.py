@@ -60,17 +60,22 @@ def appium_run_job(request):
 def appium_create_jobs():
     
     server = jenkins.Jenkins('http://'+localhost+':8080')
-
     new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.0.3"><actions/><description/><displayName>appium</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
 
-    new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>Today Date</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>echo '%date%'</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
-    
-    if server.job_exists('appium'):       
-        server.create_job('appium/job2', new_job_config)
-    else:
+    if not server.job_exists('appium'):
         server.create_job('appium', new_folder_config)
-        server.create_job('appium/job2', new_job_config)
     
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
+    new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>Appium Job</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>COMMAND</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
+    command ='echo %date%'
+    job_name='job3'
+    
+    appium_server.create_job(job_name, new_job_config.replace('COMMAND', command))
+    time.sleep(5)
+    
+    if appium_server.job_exists(job_name):
+        appium_server.build_job(job_name)
+       
 
  
     
@@ -78,30 +83,35 @@ def appium_job_status(request):
     
     job_status_list=[]
     
-    server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
-    info = server.get_info()
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
+    info = appium_server.get_info()
     jobs = info['jobs']
     
     for job in jobs:
-            job=job['name']
-            job_info = server.get_job_info(job)
+            job_name=job['name']
+            job_info = appium_server.get_job_info(job_name)
             JobName= job_info['name']
-            Build= job_info['lastCompletedBuild']['number']
-           
-            build_info = server.get_build_info(job, Build) 
-    
+            Build='...'
+            Result = "Not Built"
+            StartTime = '------'
+            EndTime = '------'
             Duration = '...'
-            if str(build_info['result']) == 'None':
-                Result = "IN PROGRESS"
-                StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-                EndTime = '---------'
-    
-            else:
-                Result = build_info['result']
-                StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-                EndTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
-                Duration= build_info['duration']
-                
+            
+            if job_info['lastCompletedBuild']:
+                Build= job_info['lastCompletedBuild']['number']
+                build_info = appium_server.get_build_info(job_name, Build) 
+            
+                if str(build_info['result']) == 'None':
+                    Result = "IN PROGRESS"
+                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
+                    
+        
+                else:
+                    Result = build_info['result']
+                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
+                    EndTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
+                    Duration= build_info['duration']
+                    
             job_dict={}
             job_dict['JobName']=JobName
             job_dict['Build']=Build
@@ -111,6 +121,7 @@ def appium_job_status(request):
             job_dict['Duration']=Duration
             
             job_status_list.append(job_dict)
+            
     
     data = json.dumps(job_status_list)
     return HttpResponse(data, content_type='application/json')
