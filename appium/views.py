@@ -48,7 +48,7 @@ def appium_run_job(request):
     ios_suites_cases = []
     [ ios_suites_cases.extend(i) for i in [suite["cases_ios"] for suite in post_data['suites_ios']]]
     ios_test_cases = list(set(ios_suites_cases))
-    user_name = request.user.username
+    tester = request.user.username
     
     print android_test_cases
     print ios_test_cases
@@ -92,7 +92,7 @@ def appium_job_status(request):
             job_info = appium_server.get_job_info(job_name)
             JobName= job_info['name']
             Build='...'
-            Result = "Not Built"
+            Result = "NOT BUILT"
             StartTime = '------'
             EndTime = '------'
             Duration = '...'
@@ -113,13 +113,15 @@ def appium_job_status(request):
                     Duration= build_info['duration']
                     
             job_dict={}
+            job_dict['Devices']='Devices -'+JobName
+            job_dict['SuiteName']='Suite -'+JobName
             job_dict['JobName']=JobName
             job_dict['Build']=Build
             job_dict['Result']=Result
             job_dict['StartTime']=StartTime
             job_dict['EndTime']=EndTime
             job_dict['Duration']=Duration
-            
+            job_dict['Tester']=request.user.username
             job_status_list.append(job_dict)
             
     

@@ -68,7 +68,7 @@ $(document).ready(function () {
 	}); 
 });
 
-$(window).resize(function() {
+/*$(window).resize(function() {
 	$(".resize_table").removeClass('fixed_head');
 	$(".resize_tbody").removeClass('stb_tbody');
 	setTimeout( function(){
@@ -84,7 +84,7 @@ $(window).resize(function() {
 		$(".resize_table").addClass('fixed_head');
 		$(".resize_tbody").addClass('stb_tbody');
    },500);  
-});
+});*/
 
 $(function() {
   populateTestSuite();
@@ -461,4 +461,106 @@ function stb_table(){
    });
    return td_array;
 }
+function stb2(job, build) {
+  $.post("stopJob", {"Job Number":job, "Build Number":build}, function(appiumjob){
+    location.reload();
+  });
+}
 
+function stb1(job1, build1){
+    alert (job1);
+    alert (build1);
+    $.get("stopJob",{ job: job1, build: build1 },function(appiumjob){
+     });
+}
+
+$(document).ready(function () {
+$.getJSON( "/static/data/appiumjobstatus.json", function( appiumjob ) {
+	//$.getJSON(window.config.appiumJobStatus, function(appiumjob) {
+		
+      $("#appiumjob_result").empty();
+        $.each(appiumjob, function(i, item){    
+		    var status;
+        if(item.Result == "SUCCESS"){
+          resultclass = "result_available";
+		      linkclass = "";
+  		    status = "disabled";
+			 $('.btn_stop').css({'opacity': '0.65','pointer-events':'none'});
+			 
+        }
+        if(item.Result == "FAILURE"){
+          resultclass = "result_offline";
+		      linkclass = "";
+          status = 'disabled';
+		   $('button').css({'opacity': '0.65','pointer-events':'none'});
+		    }
+        if(item.Result == "IN PROGRESS"){
+          resultclass = "result_progress";
+		      linkclass = "";
+			  status = '';
+			  
+			 
+		    }
+        if(item.Result == "IN QUEUE"){
+          resultclass = "result_queue";
+		      linkclass = "";
+		      status = '';
+			  
+        }
+        if(item.Result == "ABORTED"){
+          resultclass = "result_aborted";
+		      linkclass = "";
+		      status = 'disabled';
+			   $('button').css({'opacity': '0.65','pointer-events':'none'});
+        }
+            
+			$("#appiumjob_result").append("<tr style='padding:5px'><td style='width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Devices"] +","+item["Build"]+"'></td><td style='width:37px; text-align: center'>"+item["Devices"]+"</td><td class='suite-name' style='width:88px; text-align: center'>"+item["SuiteName"]+"</td><td style='width:52px; text-align: center'>"+item["Build"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.Tester+" </td><td style='text-align: center'><button onclick=\"stb1('"+item["Devices"]+"',"+item["Build"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +"><img src='/static/app/images/console_output.png' alt='Console Output' title='Console Output'></a></td></tr>");
+        });
+    });
+	$('#button3').click(function(){
+		$('#appiumjob_result').load('/ #actions', function() {
+			//$.getJSON( "/static/data/appiumjobstatus.json", function( appiumjob ) {
+			$.getJSON(window.config.appiumJobStatus, function(appiumjob) {
+				
+			  $("#appiumjob_result").empty();
+				$.each(appiumjob, function(i, item){    
+					var status;
+				if(item.Result == "SUCCESS"){
+				  resultclass = "result_available";
+					  linkclass = "";
+					status = "disabled";
+					 $('.btn_stop').css({'opacity': '0.65','pointer-events':'none'});
+					 
+				}
+				if(item.Result == "FAILURE"){
+				  resultclass = "result_offline";
+					  linkclass = "";
+				  status = 'disabled';
+				   $('button').css({'opacity': '0.65','pointer-events':'none'});
+					}
+				if(item.Result == "IN PROGRESS"){
+				  resultclass = "result_progress";
+					  linkclass = "";
+					  status = '';
+					  
+					 
+					}
+				if(item.Result == "IN QUEUE"){
+				  resultclass = "result_queue";
+					  linkclass = "";
+					  status = '';
+					  
+				}
+				if(item.Result == "ABORTED"){
+				  resultclass = "result_aborted";
+					  linkclass = "";
+					  status = 'disabled';
+					   $('button').css({'opacity': '0.65','pointer-events':'none'});
+				}
+					
+					$("#appiumjob_result").append("<tr style='padding:5px'><td style='width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Devices"] +","+item["Build"]+"'></td><td style='width:37px; text-align: center'>"+item["Devices"]+"</td><td class='suite-name' style='width:88px; text-align: center'>"+item["SuiteName"]+"</td><td style='width:52px; text-align: center'>"+item["Build"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.Tester+" </td><td style='text-align: center'><button onclick=\"stb1('"+item["Devices"]+"',"+item["Build"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +"><img src='/static/app/images/console_output.png' alt='Console Output' title='Console Output'></a></td></tr>");
+				});
+			});	
+		});
+	});
+});

@@ -19,12 +19,12 @@
 	<script src="{% static 'revo/scripts/moment-with-locales.js' %}"></script>
 	<script src="{% static 'revo/scripts/bootstrap-datetimepicker.js' %}"></script>
 	
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
     <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
     <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
     
-    <script src="{% static 'revo/scripts/job_status.jsx' %}" type="text/jsx"></script>
+    <script src="{% static 'appium/scripts/job_status.jsx' %}" type="text/jsx"></script>-->
 	
 	
 {% endblock %}
@@ -173,22 +173,47 @@
 				</div>
 				<div class="col-md-4 divsub"></div>
 			</div>
+		</div>
 		
 	</form>
-	<div id="result"></div>
+	
 	<form action="{% url 'StopMultipleJobs' %}" method="post">
         {% csrf_token %}  
-            <div class="col-md-12 divsub">
-                <div class="quote-box scroller-text scroller" id="job-status-table"></div>
+            <!--<div class="col-md-12 divsub">
+                <div class="quote-box scroller-text scroller" id="appiumjob_result"></div>
+            </div>-->			
+		<div class="row">
+			<div class="col-md-12 divsub">
+                <table style="width:100%">
+					<thead style="width: 100%">
+						<tr style='border-bottom:1px solid #CCC;'>
+							<th class="job-status_checkbox" style='width:66px; text-align:center'>						
+								<input type="checkbox" onchange="checkAll(this)" name="chk[]"  />
+							</th>
+							<th class="table-header job-status_heading" style="width:100px">Devices &nbsp; &nbsp;<a><i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" id="button3"></i></a></th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Suite Name  </th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Build #</th>
+							<th class="table-header job-status_heading" style="width:100px">Result</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Start Time</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">End Time</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Duration</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Tester</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Stop</th>
+							<th class="table-header job-status_heading" style="padding:5px; width:100px">Output</th>
+						</tr>
+					</thead>
+					<tbody class="panel-collapse collapse in animated fadeIn appium_tbody" name="stb-table" id="appiumjob_result"/>
+				</table>
             </div>
-        
+			
 			<div class="col-md-12">
 				<div class="col-md-4 divsub"></div>
-				<div class="col-md-4 text-center">
+				<div class="col-md-4 text-center"  style="margin-top:10px">
                     <input type="image" name="submit" img src="{% static 'app/images/Stop.png' %}" alt="Stop">
                 </div>
 				<div class="col-md-4 divsub"></div>
 			</div>
+		</div>
 		
     </form>
 	</div>
@@ -204,6 +229,7 @@
 		config.appiumIOSTestSuiteWithCases = "{% url 'appium_ios_test_suite_with_cases' %}";
 		config.appiumAndroidDeviceList = "{% url 'appium_android_devices_list' %}"; 
 		config.appiumIOSDeviceList = "{% url 'appium_ios_devices_list' %}";
+		config.appiumJobStatus = "{% url 'appium_job_status' %}";
         window.config = config;
         
 	</script>
