@@ -8,3 +8,4 @@ multi-key-dict==2.0.3
 django-import-export
 django-widget-tweaks
 django-macaddress
+pypiwin32==219
