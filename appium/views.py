@@ -128,6 +128,15 @@ def appium_job_status(request):
     data = json.dumps(job_status_list)
     return HttpResponse(data, content_type='application/json')
     
+ 
+def  consolelink(request):
+    assert isinstance(request, HttpRequest)
+    job = request.GET["job"]
+    build = int(request.GET["build"])
+    server = jenkins.Jenkins('http://10.146.217.49:8080/job/appium/',)
+    output = server.get_build_console_output(job, build)
+    return HttpResponse(output)
+
     
 # Appium Test Suite Cases as Json
 def appium_android_test_suite_cases(request):
