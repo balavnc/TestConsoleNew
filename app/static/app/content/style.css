@@ -2481,6 +2481,7 @@ section.content {
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   border-radius: 2px;
+  width: 100%;
   border: none;
   font-size: 13px;
   outline: none; }
@@ -4218,7 +4219,8 @@ section.content {
 /* Modals ====================================== */
 .modal .modal-header {
   border: none;
-  padding: 25px 25px 5px 25px; }
+  background-color: #F44336; color: #FFFFFF;
+  /*padding: 25px 25px 5px 25px;*/ }
   .modal .modal-header .modal-title {
     font-weight: bold;
     font-size: 16px; }

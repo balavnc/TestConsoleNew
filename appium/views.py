@@ -8,18 +8,30 @@ from datetime import datetime, date, timedelta
 import json
 import jenkins
 import os, time
+import socket
+import urllib
 
 from models import *
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-import socket
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+
 
 hostname = socket.gethostname()
 localhost = socket.gethostbyname(hostname)
-# Create your views here.
+jenkins_username='jenkins'
+jenkins_password='jenkins123'
 
-        
+APPIUM_FOLDER_PATH = "/job/appium/job/"
+APPIUM_FOLDER_NAME = "appium"
+
+# Create your views here.
+       
 @login_required
 def appium_home(request):
     assert isinstance(request, HttpRequest)
@@ -83,7 +95,7 @@ def appium_job_status(request):
     
     job_status_list=[]
     
-    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
     info = appium_server.get_info()
     jobs = info['jobs']
     
@@ -97,11 +109,11 @@ def appium_job_status(request):
             EndTime = '------'
             Duration = '...'
             
-            if job_info['lastCompletedBuild']:
-                Build= job_info['lastCompletedBuild']['number']
+            if job_info['lastBuild']:
+                Build= job_info['lastBuild']['number']
                 build_info = appium_server.get_build_info(job_name, Build) 
             
-                if str(build_info['result']) == 'None':
+                if build_info['building']:
                     Result = "IN PROGRESS"
                     StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                     
@@ -133,9 +145,62 @@ def  consolelink(request):
     assert isinstance(request, HttpRequest)
     job = request.GET["job"]
     build = int(request.GET["build"])
-    server = jenkins.Jenkins('http://10.146.217.49:8080/job/appium/',)
+    server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
     output = server.get_build_console_output(job, build)
     return HttpResponse(output)
+
+
+def get_full_job_name(job_name):
+    return APPIUM_FOLDER_NAME + '/' + job_name
+
+def stop_job_impl(jnkns_srvr, my_job, my_build):
+    logger.debug("my_job: " + my_job + "  my_build: " + str(my_build))
+    try:
+        if jnkns_srvr.get_queue_info():
+            if my_build in [job['id'] for job in jnkns_srvr.get_queue_info()]:
+                jnkns_srvr.cancel_queue(my_build)
+                logger.debug("CANCELLED QUEUE: " + "my_job: " + my_job + "  my_build: " + str(my_build))
+        else:
+            running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if APPIUM_FOLDER_PATH + my_job in str(build['url']) ]
+            if running_build_number :
+                jnkns_srvr.stop_build(get_full_job_name(my_job), running_build_number[0])
+                logger.debug("CANCELLED BUILD: " + "my_job: " + my_job + "  my_build: " + str(my_build))
+            else:
+                logger.debug("JOB NEITHER IN QUEUE NOR RUNNING:  " + "my_job: " + my_job + "  my_build: " + str(my_build))
+    except jenkins.NotFoundException:
+        logger.error("NotFoundException + " + str(my_build))
+
+
+def stopJob(request):
+    assert isinstance(request, HttpRequest)
+    job = request.GET["job"]
+    build = int(request.GET["build"])
+    print job,build
+    
+    jnkns_srvr = jenkins.Jenkins('http://'+localhost+':8080/',jenkins_username,jenkins_password)
+    
+    #jnkns_srvr.stop_build(get_full_job_name(job), build)
+    stop_job_impl(jnkns_srvr, job, build)
+    
+    return HttpResponse(json.dumps({"done" : True }), content_type='application/json')
+
+
+def StopMultipleJobs(request):
+    assert isinstance(request, HttpRequest)
+
+    builds_list = request.POST.getlist('builds')
+    logger.debug("builds_list: " + str(builds_list))
+    loop_counter = len(builds_list) - 1
+    jnkns_srvr = jenkins.Jenkins('http://'+localhost+':8080/',jenkins_username,jenkins_password)
+    
+    while loop_counter >= 0:
+        x = str(builds_list[loop_counter])
+        my_job = x.split(",")[0]
+        my_build = int(x.split(",")[1])
+        stop_job_impl(jnkns_srvr, my_job, my_build)
+        loop_counter -= 1
+
+    return HttpResponseRedirect("/appium")
 
     
 # Appium Test Suite Cases as Json

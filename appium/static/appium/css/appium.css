@@ -37,6 +37,13 @@
 .result_aborted{
   color: #8b8989
 }
+.result_not_built{
+	color:#FFA500;
+}
+.button_status{
+	opacity: 0.65;
+	pointer-events:none;
+}
 .In.use{
   color:#F9FF00;
 }
@@ -69,7 +76,27 @@ padding-left:37px; text-align:center;
 }
 .add_device:hover{text-decoration:none;
 }
-
+.appium-job-status{
+    background-image: url(../../images/box1.png);  
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+    margin-top: 20px; 
+    border-radius: 7px;
+    border: 1px solid #cdcdcd; 
+    padding: 10px 0px;
+	height:220px;
+	
+    
+}
+.appium-job-status .appium_tbody{
+	height:150px;
+	overflow: auto;
+	max-height:150px;
+	background-position: center;
+    background-size: 100% 100%;
+	float:left;
+}
 
 .testreport{
     color: #fff;
@@ -172,7 +199,7 @@ font-weight:bold;
 }
 .table>thead>tr>th{
   border-bottom: 0px;
-} 
+} /*
 .quote-box{
     background-image: url(../../images/box1.png);  
     background-position: center;
@@ -181,13 +208,17 @@ font-weight:bold;
     /*margin-top: 20px; 
     margin-right: 20px;
 	margin-bottom: 20px;
-	margin-left: 20px;*/
+	margin-left: 20px;
 	
     border-radius: 7px;
     border: 1px solid #cdcdcd; 
     padding: 10px 0px;
     
-}
+}*/
+.appium_tbody{
+max-height: 250px;
+overflow-y: auto;
+	}
  .below-box{ 
    background-image: url(../../images/box1.png);  
     background-position: center;

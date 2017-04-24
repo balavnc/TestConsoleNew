@@ -10,7 +10,10 @@ urlpatterns = [
     
     # JobStatus's
     url(r"^job-status", views.appium_job_status, name="appium_job_status"),
-
+    # StopStatus's
+    url(r"^stopJob", views.stopJob, name="stopJob"),
+    # StopMultipleJobs's
+    url(r"^StopMultipleJobs", views.StopMultipleJobs, name="StopMultipleJobs"),
     
     # Test Suite and Cases
     url(r"^android-test-suite-cases", views.appium_android_test_suite_cases, name="appium_android_test_suite_with_cases"),
