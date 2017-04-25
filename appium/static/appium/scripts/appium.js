@@ -124,21 +124,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-/*
-function showConsole(job_name, build_num, suite_name) {
-	var title = "JOB: " + job_name +",    SUITE NAME:  " + suite_name;
-	$.ajax({
-		url: window.config.buildConsole ,
-		type: "get",
-		data:{"job": job_name, "build" : build_num },
-		cache: false,
-		success: function(data){
-			$('#appium-modal-content').text(data);
-			$('#title').text(title);
-			$('#myModal').modal();
-		}
-	});
-}*/
 
 /****Select All Checkbox****/
 function checkAll(ele) {
@@ -575,10 +560,9 @@ function showConsole(job_name, build_num, suite_name) {
   var suite_name = $(suite_name).closest("tr").find("td[class='suite-name']").text();
   var title = "JOB: " + vals[0] +",    BUILD:  " + vals[1];
   
-  $.ajax({
-   // url: "http://10.146.217.49:8080/job/appium/job/console",
-	//url: "http://127.0.0.1:8000/appium/console/",
-	url:  window.config.buildConsole,
+  $.ajax(
+	{
+  	url:  window.config.buildConsole,
     type: "get",
 	
     data:{"job": vals[0], "build" : vals[1]},

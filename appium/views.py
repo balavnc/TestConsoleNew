@@ -15,20 +15,13 @@ from models import *
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-import logging
-
-# Get an instance of a logger
-logger = logging.getLogger(__name__)
-
-
-
+# Jenkins 
 hostname = socket.gethostname()
 localhost = socket.gethostbyname(hostname)
+
 jenkins_username='jenkins'
 jenkins_password='jenkins123'
 
-APPIUM_FOLDER_PATH = "/job/appium/job/"
-APPIUM_FOLDER_NAME = "appium"
 
 # Create your views here.
        
@@ -71,18 +64,19 @@ def appium_run_job(request):
 
 def appium_create_jobs():
     
-    server = jenkins.Jenkins('http://'+localhost+':8080')
+    server = jenkins.Jenkins('http://'+localhost+':8080',jenkins_username,jenkins_password)
     new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.0.3"><actions/><description/><displayName>appium</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
 
     if not server.job_exists('appium'):
         server.create_job('appium', new_folder_config)
     
-    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/')
-    new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>Appium Job</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>COMMAND</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
+    new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>DESCRIPTION</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>COMMAND</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
     command ='echo %date%'
     job_name='job3'
+    job_desc ='Appium Job'
     
-    appium_server.create_job(job_name, new_job_config.replace('COMMAND', command))
+    appium_server.create_job(job_name, new_job_config.replace('DESCRIPTION',job_desc).replace('COMMAND', command))
     time.sleep(5)
     
     if appium_server.job_exists(job_name):
@@ -117,7 +111,6 @@ def appium_job_status(request):
                     Result = "IN PROGRESS"
                     StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                     
-        
                 else:
                     Result = build_info['result']
                     StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
@@ -141,64 +134,51 @@ def appium_job_status(request):
     return HttpResponse(data, content_type='application/json')
     
  
-def  consolelink(request):
+def consolelink(request):
     assert isinstance(request, HttpRequest)
     job = request.GET["job"]
     build = int(request.GET["build"])
-    server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
-    output = server.get_build_console_output(job, build)
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
+    output = appium_server.get_build_console_output(job, build)
     return HttpResponse(output)
-
-
-def get_full_job_name(job_name):
-    return APPIUM_FOLDER_NAME + '/' + job_name
-
-def stop_job_impl(jnkns_srvr, my_job, my_build):
-    logger.debug("my_job: " + my_job + "  my_build: " + str(my_build))
-    try:
-        if jnkns_srvr.get_queue_info():
-            if my_build in [job['id'] for job in jnkns_srvr.get_queue_info()]:
-                jnkns_srvr.cancel_queue(my_build)
-                logger.debug("CANCELLED QUEUE: " + "my_job: " + my_job + "  my_build: " + str(my_build))
-        else:
-            running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if APPIUM_FOLDER_PATH + my_job in str(build['url']) ]
-            if running_build_number :
-                jnkns_srvr.stop_build(get_full_job_name(my_job), running_build_number[0])
-                logger.debug("CANCELLED BUILD: " + "my_job: " + my_job + "  my_build: " + str(my_build))
-            else:
-                logger.debug("JOB NEITHER IN QUEUE NOR RUNNING:  " + "my_job: " + my_job + "  my_build: " + str(my_build))
-    except jenkins.NotFoundException:
-        logger.error("NotFoundException + " + str(my_build))
 
 
 def stopJob(request):
     assert isinstance(request, HttpRequest)
     job = request.GET["job"]
     build = int(request.GET["build"])
-    print job,build
+    print "Job to Stop ==>>  Job:" + job + "  Build No: " + str(build)
     
-    jnkns_srvr = jenkins.Jenkins('http://'+localhost+':8080/',jenkins_username,jenkins_password)
+    server = jenkins.Jenkins('http://'+localhost+':8080',jenkins_username,jenkins_password)
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
     
-    #jnkns_srvr.stop_build(get_full_job_name(job), build)
-    stop_job_impl(jnkns_srvr, job, build)
+    job_info = appium_server.get_job_info(job)
     
+    if job_info['queueItem']:
+        queue_id=job_info['queueItem']['id']
+        server.cancel_queue(queue_id)
+        print "CANCELLED QUEUE ==>> Job: " + job + "  Build "+ str(build+1) +" with Queue Id: " + queue_id
+        
+    appium_server.stop_build(job, build)
+    print "STOPPED BUILD: ==>> Job: " + job + "  Build: " + str(build)
+        
     return HttpResponse(json.dumps({"done" : True }), content_type='application/json')
 
 
 def StopMultipleJobs(request):
     assert isinstance(request, HttpRequest)
 
-    builds_list = request.POST.getlist('builds')
-    logger.debug("builds_list: " + str(builds_list))
-    loop_counter = len(builds_list) - 1
-    jnkns_srvr = jenkins.Jenkins('http://'+localhost+':8080/',jenkins_username,jenkins_password)
-    
-    while loop_counter >= 0:
-        x = str(builds_list[loop_counter])
-        my_job = x.split(",")[0]
-        my_build = int(x.split(",")[1])
-        stop_job_impl(jnkns_srvr, my_job, my_build)
-        loop_counter -= 1
+    builds_list = request.POST.getlist('build')
+    print "Jobs List to Stop: ==>> ",  builds_list
+    appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
+        
+    if builds_list:
+        for build_info in builds_list:
+            info = str(build_info)
+            job = info.split(",")[0]
+            build = int(info.split(",")[1])
+            appium_server.stop_build(job, build)
+            
 
     return HttpResponseRedirect("/appium")
 
