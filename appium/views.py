@@ -41,7 +41,7 @@ def appium_home(request):
   
 def appium_run_job(request):
     post_data = json.loads(request.body)
-   
+
     #parsing data
     android_devices = post_data['devices_android']
     ios_devices = post_data['devices_ios']
@@ -55,10 +55,11 @@ def appium_run_job(request):
     ios_test_cases = list(set(ios_suites_cases))
     tester = request.user.username
     
-    print android_test_cases
-    print ios_test_cases
+    print android_suites, android_suites_cases
     
-    appium_create_jobs()
+    print ios_suites_cases
+    
+    #appium_create_jobs()
        
     return HttpResponse(post_data, content_type='application/json') 
 
@@ -105,16 +106,16 @@ def appium_job_status(request):
             
             if job_info['lastBuild']:
                 Build= job_info['lastBuild']['number']
-                build_info = appium_server.get_build_info(job_name, Build) 
+                build_info = appium_server.get_build_info(job_name, Build)
             
                 if build_info['building']:
                     Result = "IN PROGRESS"
-                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
+                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 23400000) / 1000))
                     
                 else:
                     Result = build_info['result']
-                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-                    EndTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
+                    StartTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 23400000) / 1000))
+                    EndTime = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 23400000) / 1000)))
                     Duration= build_info['duration']
                     
             job_dict={}
@@ -172,12 +173,12 @@ def StopMultipleJobs(request):
     print "Jobs List to Stop: ==>> ",  builds_list
     appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
         
-    if builds_list:
-        for build_info in builds_list:
-            info = str(build_info)
-            job = info.split(",")[0]
-            build = int(info.split(",")[1])
-            appium_server.stop_build(job, build)
+#     if builds_list:
+#         for build_info in builds_list:
+#             info = str(build_info)
+#             job = info.split(",")[0]
+#             build = int(info.split(",")[1])
+#             appium_server.stop_build(job, build)
             
 
     return HttpResponseRedirect("/appium")
