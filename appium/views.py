@@ -148,7 +148,8 @@ def stopJob(request):
     assert isinstance(request, HttpRequest)
     job = request.GET["job"]
     build = int(request.GET["build"])
-    print "Job to Stop ==>>  Job:" + job + "  Build No: " + str(build)
+    PRINT_JOB_INFO = str("Job:" + job + "  Build No: " + str(build))
+    print "Job to Stop ==>> " + PRINT_JOB_INFO
     
     server = jenkins.Jenkins('http://'+localhost+':8080',jenkins_username,jenkins_password)
     appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
@@ -157,11 +158,12 @@ def stopJob(request):
     
     if job_info['queueItem']:
         queue_id=job_info['queueItem']['id']
+        PRINT_QUEUE_INFO = "Job: " + job + "  Build "+ str(build+1) +" with Queue Id: " + queue_id
         server.cancel_queue(queue_id)
-        print "CANCELLED QUEUE ==>> Job: " + job + "  Build "+ str(build+1) +" with Queue Id: " + queue_id
+        print "CANCELLED QUEUE ==>> " + PRINT_QUEUE_INFO
         
     appium_server.stop_build(job, build)
-    print "STOPPED BUILD: ==>> Job: " + job + "  Build: " + str(build)
+    print "STOPPED BUILD: ==>> "+ PRINT_JOB_INFO
         
     return HttpResponse(json.dumps({"done" : True }), content_type='application/json')
 
