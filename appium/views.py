@@ -45,41 +45,53 @@ def appium_run_job(request):
     #parsing data
     android_devices = post_data['devices_android']
     ios_devices = post_data['devices_ios']
-    android_suites =  [ suite["name"] for suite in post_data['suites_android']]
-    ios_suites = [ suite["name"] for suite in post_data['suites_ios']]
-    android_suites_cases = []
-    [ android_suites_cases.extend(i) for i in [suite["cases_android"] for suite in post_data['suites_android']]]
-    android_test_cases = list(set(android_suites_cases))
-    ios_suites_cases = []
-    [ ios_suites_cases.extend(i) for i in [suite["cases_ios"] for suite in post_data['suites_ios']]]
-    ios_test_cases = list(set(ios_suites_cases))
+    android_suite_cases =  { suite["name"]:suite["cases_android"] for suite in post_data['suites_android']}
+    ios_suite_cases = { suite["name"]:suite["cases_ios"] for suite in post_data['suites_ios']}
+
     tester = request.user.username
     
-    print android_suites, android_suites_cases
+    for device in android_devices:
+        for suite, cases in android_suite_cases.items():
+            if cases:
+                cases=' '.join(cases)
+                appium_create_jobs(device,suite,cases)
+                
+    for device in ios_devices:
+        for suite, cases in ios_suite_cases.items():
+            if cases:
+                cases=' '.join(cases)
+                appium_create_jobs(device,suite,cases)
+        
     
-    print ios_suites_cases
+    print android_suite_cases, ios_suite_cases
+    
     
     #appium_create_jobs()
        
     return HttpResponse(post_data, content_type='application/json') 
 
-def appium_create_jobs():
+def appium_create_jobs(device, suite, cases):
     
     server = jenkins.Jenkins('http://'+localhost+':8080',jenkins_username,jenkins_password)
-    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.0.3"><actions/><description/><displayName>appium</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
+    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.0.3"><actions/><description/><displayName>Appium Jobs</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
 
     if not server.job_exists('appium'):
         server.create_job('appium', new_folder_config)
     
     appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
     new_job_config="<?xml version='1.0' encoding='UTF-8'?><project><actions/><description>DESCRIPTION</description><keepDependencies>true</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>true</concurrentBuild><builders><hudson.tasks.BatchFile><command>COMMAND</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
-    command ='echo %date%'
-    job_name='job3'
-    job_desc ='Appium Job'
     
-    appium_server.create_job(job_name, new_job_config.replace('DESCRIPTION',job_desc).replace('COMMAND', command))
+    job_name=device +'-'+suite
+    job_desc =suite +'-'+cases
+    command ='ping 127.0.0.1 -n 10 > nul'
+    
+    if not appium_server.job_exists(job_name):
+        appium_server.create_job(job_name, new_job_config.replace('DESCRIPTION',job_desc).replace('COMMAND', command))
+    else:
+        appium_server.reconfig_job(job_name, new_job_config.replace('DESCRIPTION',job_desc).replace('COMMAND', command))
+        
     time.sleep(5)
-    
+        
     if appium_server.job_exists(job_name):
         appium_server.build_job(job_name)
        
@@ -119,8 +131,8 @@ def appium_job_status(request):
                     Duration= build_info['duration']
                     
             job_dict={}
-            job_dict['Devices']='Devices -'+JobName
-            job_dict['SuiteName']='Suite -'+JobName
+            job_dict['Devices']=JobName.split('-',1)[0]
+            job_dict['SuiteName']=JobName.split('-',1)[1]
             job_dict['JobName']=JobName
             job_dict['Build']=Build
             job_dict['Result']=Result
