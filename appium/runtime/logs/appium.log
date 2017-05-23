@@ -1,0 +1,165 @@
+2017-05-23 16:47:38,334 [ INFO ] Welcome to Appium Page
+2017-05-23 16:47:39,132 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 16:47:39,155 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 16:47:39,390 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 16:47:39,736 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 16:47:40,134 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 16:47:40,561 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 16:47:40,815 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 16:47:41,203 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 16:47:41,615 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 16:47:42,000 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 16:47:42,262 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 16:47:42,661 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 16:47:43,016 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 17:49:06,811 [ INFO ] Welcome to Appium Page
+2017-05-23 17:49:07,875 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 17:49:07,927 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 17:49:07,957 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 17:49:08,371 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 17:49:08,661 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 17:49:09,065 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 17:49:09,460 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 17:49:09,960 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 17:49:10,358 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 17:49:10,861 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 17:49:11,407 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 17:49:11,813 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 17:49:12,453 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:06:37,002 [ INFO ] Welcome to Appium Page
+2017-05-23 18:06:37,262 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:06:37,299 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:06:56,736 [ INFO ] Welcome to Appium Page
+2017-05-23 18:06:57,345 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:06:57,346 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:07:46,460 [ INFO ] Welcome to Appium Page
+2017-05-23 18:07:46,862 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:07:46,895 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:08:43,578 [ INFO ] Welcome to Appium Page
+2017-05-23 18:08:43,976 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:08:44,013 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:10:24,855 [ INFO ] Welcome to Appium Page
+2017-05-23 18:10:25,601 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:10:25,628 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:10:26,361 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:10:26,927 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:10:27,802 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:10:28,293 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:10:29,450 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:10:29,839 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:10:30,217 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:10:30,642 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:10:31,155 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:10:31,460 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:10:31,802 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:13:39,710 [ INFO ] Welcome to Appium Page
+2017-05-23 18:13:41,371 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:13:41,375 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:13:41,631 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:13:42,036 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:13:42,436 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:13:42,835 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:13:43,111 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:13:43,461 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:13:43,862 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:13:44,164 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:13:44,480 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:13:44,865 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:13:45,232 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:17:30,871 [ INFO ] Welcome to Appium Page
+2017-05-23 18:17:31,191 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:17:31,246 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:17:31,448 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:17:31,772 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:17:32,121 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:17:32,535 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:17:32,944 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:17:33,209 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:17:33,611 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:17:34,055 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:17:34,460 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:17:34,867 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:17:35,140 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:19:03,267 [ INFO ] Welcome to Appium Page
+2017-05-23 18:19:03,585 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:19:03,635 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:19:03,901 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:19:04,404 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:19:04,885 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:19:05,299 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:19:05,581 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:19:06,019 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:19:06,520 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:19:06,846 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:19:07,269 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:19:07,711 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:19:08,058 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:19:38,384 [ INFO ] Welcome to Appium Page
+2017-05-23 18:19:38,661 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:19:38,786 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:19:38,976 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:19:39,296 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:19:39,673 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:19:40,088 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:19:40,548 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:19:40,927 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:19:41,344 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:19:41,855 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:19:42,336 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:19:42,698 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:19:43,096 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:20:12,562 [ INFO ] Welcome to Appium Page
+2017-05-23 18:20:12,920 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:20:12,928 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:20:13,184 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:20:13,588 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:20:14,071 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:20:14,460 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:20:14,766 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:20:15,167 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:20:15,579 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:20:15,990 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:20:16,377 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:20:16,786 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:20:17,197 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:21:35,246 [ INFO ] Welcome to Appium Page
+2017-05-23 18:21:35,559 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:21:35,563 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:21:35,829 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:21:36,181 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:21:36,507 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:21:36,992 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:21:37,332 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:21:37,851 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:21:38,301 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:21:38,683 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:21:39,151 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:21:39,588 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:21:39,933 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:22:51,552 [ INFO ] Welcome to Appium Page
+2017-05-23 18:22:52,755 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:22:52,767 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:22:52,914 [ INFO ] Fetching Appium Jobs and their statuses from Jenkins :::
+2017-05-23 18:22:53,319 [ INFO ] 1 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-New', 'Result': u'ABORTED', 'StartTime': '05/18/2017 02:24:46', 'Duration': 12327, 'EndTime': '05/18/2017 02:24:58', 'Build': 11}
+2017-05-23 18:22:53,832 [ INFO ] 2 >> {'Tester': u'ash', 'SuiteName': u'Smoke', 'Devices': u'Apple 5S', 'JobName': u'Apple 5S-Smoke', 'Result': u'SUCCESS', 'StartTime': '05/23/2017 04:43:04', 'Duration': 99666, 'EndTime': '05/23/2017 04:44:43', 'Build': 1}
+2017-05-23 18:22:54,397 [ INFO ] 3 >> {'Tester': u'ash', 'SuiteName': u'IOS 1', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 1', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 07:14:47', 'Duration': 9549, 'EndTime': '05/16/2017 07:14:57', 'Build': 1}
+2017-05-23 18:22:54,849 [ INFO ] 4 >> {'Tester': u'ash', 'SuiteName': u'IOS 2', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-IOS 2', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 03:41:49', 'Duration': 9794, 'EndTime': '05/17/2017 03:41:59', 'Build': 10}
+2017-05-23 18:22:55,181 [ INFO ] 5 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Apple 6S', 'JobName': u'Apple 6S-New', 'Result': u'SUCCESS', 'StartTime': '05/17/2017 00:25:32', 'Duration': 9782, 'EndTime': '05/17/2017 00:25:41', 'Build': 1}
+2017-05-23 18:22:55,556 [ INFO ] 6 >> {'Tester': u'ash', 'SuiteName': u'Complete Suite', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-Complete Suite', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 00:31:22', 'Duration': 9291, 'EndTime': '05/12/2017 00:31:32', 'Build': 1}
+2017-05-23 18:22:56,127 [ INFO ] 7 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Moto X Play', 'JobName': u'Moto X Play-New', 'Result': u'SUCCESS', 'StartTime': '05/16/2017 04:47:05', 'Duration': 9317, 'EndTime': '05/16/2017 04:47:14', 'Build': 1}
+2017-05-23 18:22:56,565 [ INFO ] 8 >> {'Tester': u'ash', 'SuiteName': u'Android 1', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 1', 'Result': u'SUCCESS', 'StartTime': '05/12/2017 02:00:43', 'Duration': 9749, 'EndTime': '05/12/2017 02:00:53', 'Build': 1}
+2017-05-23 18:22:56,960 [ INFO ] 9 >> {'Tester': u'ash', 'SuiteName': u'Android 2', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-Android 2', 'Result': u'ABORTED', 'StartTime': '05/12/2017 00:32:02', 'Duration': 4865, 'EndTime': '05/12/2017 00:32:07', 'Build': 1}
+2017-05-23 18:22:57,339 [ INFO ] 10 >> {'Tester': u'ash', 'SuiteName': u'New', 'Devices': u'Redmi Note 4', 'JobName': u'Redmi Note 4-New', 'Result': u'ABORTED', 'StartTime': '05/17/2017 03:55:39', 'Duration': 983071, 'EndTime': '05/17/2017 04:12:02', 'Build': 14}
+2017-05-23 18:23:04,183 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:05,194 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:06,157 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:06,723 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:07,328 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:08,742 [ INFO ] Connected IOS devices Serial Nos list :: []
+2017-05-23 18:23:18,303 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:40,880 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:41,746 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:23:41,976 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:24:15,229 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:24:15,822 [ INFO ] Connected Android devices Serial Nos list :: []
+2017-05-23 18:24:16,354 [ INFO ] Connected Android devices Serial Nos list :: []

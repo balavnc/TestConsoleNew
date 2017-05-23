@@ -357,44 +357,7 @@ $.fn.serializeObject = function() {
 	window.runAppiumJson = runAppiumJson;
 	
 }
-$.fn.serializeObject2 = function()
-	{
-		var runAppiumJson2 = {};
-		runAppiumJson2['devices']='';
-		runAppiumJson2['build']='';
-		var count=0;
-			var o = {};
-			var a = this.serializeArray();
-			var device_name = [];
-			
-			$.each(a, function(key,appiumvalues) {
-				console.log(appiumvalues.value);
-				if(appiumvalues.name=='devices'){
-					device_name = appiumvalues.value;
-				}
-				
-				
-				if(appiumvalues.name=='build'){
-					runAppiumJson2['build'] = appiumvalues.value;
-				}
-				
-				
-					
-			});
-			
-			
-			var all=0;
-			var count=0;
-			
-			$('#result').text(JSON.stringify(runAppiumJson2));
-			//return o;
-		};
-		$(function() {
-			$('form').submit(function() {
-				$('#result').text(JSON.stringify($('form').serializeObject2()));
-				return false;
-			});
-		}); 
+
 			
 function stopJobForm() {
 	$('#stop-job').submit(function() {

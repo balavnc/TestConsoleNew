@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.urlresolvers import reverse_lazy
-from django.core.validators import validate_ipv46_address as ip_validator
 from macaddress.fields import MACAddressField
 
 # Create your models here.
