@@ -9,7 +9,6 @@
     <tr>
         <th>Select</th>
         <th>Name</th>
-        <th>Model</th>
         <th>MAC Address</th>
 		<th>Serial No</th>
         <th>OS Type</th>
@@ -21,7 +20,6 @@
                 <input type='checkbox' name='device' value='{{ device.id }}' data-edit= '{% url "appium_device_edit" device.id %}'id="{{ device.device_name }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
             </td>
             <td> {{ device.device_name }} </td>
-            <td> {{ device.device_model }} </td>
             <td> {{ device.device_mac }} </td>
             <td> {{ device.device_serial }} </td>
             <td> {{ device.device_type }} </td>

@@ -61,7 +61,6 @@ class AppiumOS(models.Model):
 
 class AppiumDevices(models.Model):
     device_name = models.CharField(max_length=255, null=True)
-    device_model = models.CharField(max_length=255, null=True)
     device_mac = MACAddressField(integer=False, null=True, blank=True)
     device_serial = models.CharField(max_length=255, unique=True)
     device_type = models.ForeignKey(DeviceType, null=True)

@@ -9,6 +9,7 @@ import jenkins
 import os, time
 from datetime import datetime
 import socket
+import urllib
 
 from models import *
 from django.views.generic import ListView
@@ -48,9 +49,6 @@ localhost = socket.gethostbyname(hostname)
 
 jenkins_username='jenkins'
 jenkins_password='jenkins123'
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 # Create your views here.
        
@@ -143,7 +141,7 @@ def appium_create_jobs(device, suite, cases):
 def appium_job_status(request):
     
     job_status_list=[]
-    
+
     logger.debug("Connecting to Jenkins server...")
     appium_server = jenkins.Jenkins('http://'+localhost+':8080/job/appium/',jenkins_username,jenkins_password)
     info = appium_server.get_info()
@@ -189,9 +187,8 @@ def appium_job_status(request):
             job_dict['Duration']=Duration
             job_dict['Tester']=request.user.username
             job_status_list.append(job_dict)
-            
             logger.info( str(count) + " >> " + str(job_dict))
-            
+   
     data = json.dumps(job_status_list)
     return HttpResponse(data, content_type='application/json')
     
@@ -296,21 +293,36 @@ def devices_is_connected():
                 active_devices_list.append(device_serial_id)
                 
     pythoncom.CoUninitialize()
-    #logger.info("Connected devices Serial Nos list :: " + active_devices_list)
+    logger.info("Connected devices Serial Nos list :: " + str(active_devices_list))
     return active_devices_list
+
+def devices_inprogress():
+    server = jenkins.Jenkins('http://'+localhost+':8080/',jenkins_username,jenkins_password)
+    devices_inprogress=[]
+    for i in server.get_running_builds():
+        jobname=i['url'].split('/')[6]
+        devices_inprogress.append(urllib.unquote(jobname).split('-',1)[0])
+
+    logger.info("Devices INPROGRESS list :: " + str(devices_inprogress))
+    return devices_inprogress
 
 def appium_android_devices_list(request):
     assert isinstance(request, HttpRequest)
     
     active_devices_list= devices_is_connected()
-    logger.info("Connected Android devices Serial Nos list :: " + str(active_devices_list))
+    devices_inprogress_list=devices_inprogress()
     
     resp = []
     devices_list = AppiumDevices.objects.filter(device_type__name='Android')
     for device in devices_list:
         d={}
-        d["DevicesLabel"]=str(device.device_name +' '+device.device_model)
-        d["DevicesStatus"]= 1 if str(device.device_serial) in active_devices_list else 0
+        d["DevicesLabel"]=str(device.device_name)
+        if str(device.device_serial) in active_devices_list:
+            d["DevicesStatus"]= 1
+        elif str(device.device_name) in devices_inprogress_list:
+            d["DevicesStatus"]= 2
+        else :
+            d["DevicesStatus"]= 0
         d["Version"]=str(device.device_version.os_version)
         d["SerialNo"]=str(device.device_serial)
         d["Env"]=str(device.device_env.name)
@@ -323,14 +335,19 @@ def appium_ios_devices_list(request):
     assert isinstance(request, HttpRequest)
     
     active_devices_list= devices_is_connected()
-    logger.info("Connected IOS devices Serial Nos list :: " + str(active_devices_list))
+    devices_inprogress_list=devices_inprogress()
     
     resp = []
     devices_list = AppiumDevices.objects.filter(device_type__name='IOS')
     for device in devices_list:
         d={}
-        d["DevicesLabel"]=str(device.device_name +' '+device.device_model)
-        d["DevicesStatus"]= 1 if str(device.device_serial) in active_devices_list else 0
+        d["DevicesLabel"]=str(device.device_name)
+        if str(device.device_serial) in active_devices_list:
+            d["DevicesStatus"]= 1
+        elif str(device.device_name) in devices_inprogress_list:
+            d["DevicesStatus"]= 2
+        else :
+            d["DevicesStatus"]= 0
         d["Version"]=str(device.device_version.os_version)
         d["SerialNo"]=str(device.device_serial)
         d["Env"]=str(device.device_env.name)

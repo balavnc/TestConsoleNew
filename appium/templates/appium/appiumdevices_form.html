@@ -10,12 +10,7 @@
         <label for="{{form.device_name.id_for_label}}" >Device Name</label>
         {{ form.device_name | add_class:"form-control input-sm" }}
     </p>
-    <p>
-        {{ form.device_model.errors }}
-        <label for="{{form.device_model.id_for_label}}">Device Model</label>
-        {{ form.device_model | add_class:"form-control input-sm" }}
-    </p>
-  	<p>
+   	<p>
         {{ form.device_mac.errors }}
         <label for="{{form.device_mac.id_for_label}}">Device MAC</label>
         {{ form.device_mac | add_class:"form-control input-sm" }}

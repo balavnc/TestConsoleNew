@@ -5,6 +5,7 @@ $(document).ready(function () {
 		for (var i = 0; i < appiumAndroid.length; i++) {
 			if(appiumAndroid[i].DevicesStatus == 0){appiumAndroidclass = "result_offline";disabled = "disabled";}
 			if(appiumAndroid[i].DevicesStatus == 1){appiumAndroidclass = "result_available";disabled = "";}
+			if(appiumAndroid[i].DevicesStatus == 2){appiumAndroidclass = "result_progress";disabled = "disabled";}
 			
 			tr = $('<tr class="device-table">');
 			tr.append("<td class='android-device'><input type='checkbox' name='devices_android' "+disabled+" class='android-checkbox' value='"+ appiumAndroid[i].DevicesLabel + "' />"+ appiumAndroid[i].DevicesLabel + "</td>");
@@ -22,6 +23,7 @@ $(document).ready(function () {
 					
 					if(appiumAndroid[i].DevicesStatus == 0){appiumAndroidclass = "result_offline";}
 					if(appiumAndroid[i].DevicesStatus == 1){appiumAndroidclass = "result_available";}
+					if(appiumAndroid[i].DevicesStatus == 2){appiumAndroidclass = "result_progress";}
 					tr = $('<tr class="device-table">');
 					tr.append("<td class='android-device'><input type='checkbox' name='devices_android' "+disabled+" class='android-checkbox' value='"+ appiumAndroid[i].DevicesLabel + "' />"+ appiumAndroid[i].DevicesLabel + "</td>");
 					tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumAndroidclass+"' aria-hidden='false'></i></td>");
@@ -42,6 +44,7 @@ $(document).ready(function () {
 		for (var i = 0; i < appiumIOS.length; i++) {
 			if(appiumIOS[i].DevicesStatus == 0){appiumIOSclass = "result_offline";disabled = "disabled";}
 			if(appiumIOS[i].DevicesStatus == 1){appiumIOSclass = "result_available";disabled = "";}
+			if(appiumIOS[i].DevicesStatus == 2){appiumIOSclass = "result_progress";disabled = "disabled";}
 			tr = $('<tr class="device-table">');
 			tr.append("<td class='android-device'><input type='checkbox' name='devices_ios' "+disabled+" class='android-checkbox' value='"+ appiumIOS[i].DevicesLabel +"'  />"+ appiumIOS[i].DevicesLabel + "</td>");
 			tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumIOSclass+"' aria-hidden='false'></i></td>");
@@ -57,6 +60,8 @@ $(document).ready(function () {
 				for (var i = 0; i < appiumIOS.length; i++) {
 					if(appiumIOS[i].DevicesStatus == 0){appiumIOSclass = "result_offline";}
 					if(appiumIOS[i].DevicesStatus == 1){appiumIOSclass = "result_available";}
+					if(appiumIOS[i].DevicesStatus == 2){appiumIOSclass = "result_progress";}
+
 					tr = $('<tr class="device-table">');
 					tr.append("<td class='android-device'><input type='checkbox' "+disabled+" name='devices_ios' class='android-checkbox' value='"+ appiumIOS[i].DevicesLabel +"'  />"+ appiumIOS[i].DevicesLabel + "</td>");
 					tr.append("<td class='android-device'> <i class='fa fa-circle "+appiumIOSclass+"' aria-hidden='false'></i></td>");
