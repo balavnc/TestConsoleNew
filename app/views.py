@@ -24,8 +24,7 @@ import json as simplejson
 from django.db.models import Avg
 from django.db.models import Sum, Avg, Count
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
-
+from django.http import HttpResponseRedirect, HttpResponse
 
 @login_required
 def home(request):
